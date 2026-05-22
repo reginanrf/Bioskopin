@@ -8,14 +8,14 @@ package views.admin;
  *
  * @author regina
  */
-public class FnBManagementFrame extends javax.swing.JFrame {
+public class DashboardAdmin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FnBManagementFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardAdmin.class.getName());
 
     /**
-     * Creates new form FnBManagementFrame
+     * Creates new form DashboardAdmin
      */
-    public FnBManagementFrame() {
+    public DashboardAdmin() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class FnBManagementFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FnBManagementFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new DashboardAdmin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

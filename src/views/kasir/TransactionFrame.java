@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views.admin;
+package views.kasir;
 
 /**
  *
  * @author regina
  */
-public class FnBManagementFrame extends javax.swing.JFrame {
+public class TransactionFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FnBManagementFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TransactionFrame.class.getName());
 
     /**
-     * Creates new form FnBManagementFrame
+     * Creates new form TransactionFrame
      */
-    public FnBManagementFrame() {
+    public TransactionFrame() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class FnBManagementFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FnBManagementFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TransactionFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,14 +8,14 @@ package views.admin;
  *
  * @author regina
  */
-public class FnBManagementFrame extends javax.swing.JFrame {
+public class StudioManagementFrame extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FnBManagementFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StudioManagementFrame.class.getName());
 
     /**
-     * Creates new form FnBManagementFrame
+     * Creates new form StudioManagementFrame
      */
-    public FnBManagementFrame() {
+    public StudioManagementFrame() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class FnBManagementFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FnBManagementFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new StudioManagementFrame().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
