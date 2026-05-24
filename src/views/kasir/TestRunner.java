@@ -1,7 +1,7 @@
 package views.kasir;
 
 import javax.swing.*;
-import views.admin.FnBManagementPanel; // Keep this if you plan to switch previews later
+import views.admin.FnBManagementPanel;
 
 /**
  * @author riikq
@@ -22,7 +22,7 @@ public class TestRunner {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // 2. Instantiate your View panel (No import needed since it's in views.kasir)
-      SeatSelectionPanel seatView = new SeatSelectionPanel();
+      FnBManagementPanel seatView = new FnBManagementPanel();
 
       // 3. Mount the panel into the frame window
       frame.add(seatView);

@@ -164,7 +164,7 @@ public class FnBManagementPanel extends javax.swing.JPanel {
                         javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 
-    btnCreate.setText("Tambah (Create)");
+    btnCreate.setText("Tambah");
     btnCreate.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnCreateActionPerformed(evt);
@@ -172,7 +172,7 @@ public class FnBManagementPanel extends javax.swing.JPanel {
     });
     jPanelActions.add(btnCreate);
 
-    btnUpdate.setText("Ubah (Update)");
+    btnUpdate.setText("Ubah");
     btnUpdate.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnUpdateActionPerformed(evt);
@@ -180,7 +180,7 @@ public class FnBManagementPanel extends javax.swing.JPanel {
     });
     jPanelActions.add(btnUpdate);
 
-    btnDelete.setText("Hapus (Delete)");
+    btnDelete.setText("Hapus");
     btnDelete.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
         btnDeleteActionPerformed(evt);

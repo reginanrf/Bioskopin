@@ -1,6 +1,6 @@
 package controllers;
 
-import config.Database;
+import config.DatabaseHelper;
 import models.FnBItem;
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class FnBController {
     ArrayList<FnBItem> list = new ArrayList<>();
     String query = "SELECT * FROM fnb_items";
 
-    try (Connection conn = Database.connect();
+    try (Connection conn = DatabaseHelper.getConnection();
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(query)) {
 
@@ -33,7 +33,7 @@ public class FnBController {
   // Equivalent to a Store method
   public boolean store(String name, String category, double price, int stock) {
     String query = "INSERT INTO fnb_items (nama_fnb, kategori, harga, stok) VALUES (?, ?, ?, ?)";
-    try (Connection conn = Database.connect();
+    try (Connection conn = DatabaseHelper.getConnection();
         PreparedStatement ps = conn.prepareStatement(query)) {
       ps.setString(1, name);
       ps.setString(2, category);
@@ -49,7 +49,7 @@ public class FnBController {
   // Equivalent to a Destroy method
   public boolean destroy(int id) {
     String query = "DELETE FROM fnb_items WHERE id_fnb = ?";
-    try (Connection conn = Database.connect();
+    try (Connection conn = DatabaseHelper.getConnection();
         PreparedStatement ps = conn.prepareStatement(query)) {
       ps.setInt(1, id);
       return ps.executeUpdate() > 0;
