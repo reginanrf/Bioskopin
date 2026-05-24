@@ -36,7 +36,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         sidebarpanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sidebarDashboard = new javax.swing.JLabel();
@@ -92,9 +91,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
         sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/admin/logo_bioskopin.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
         jLabel2.setText("jLabel2");
 
@@ -143,32 +139,28 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
             .addGroup(sidebarpanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(sidebarpanelLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sidebarDashboard)
-                                    .addComponent(sidebarFilm)
-                                    .addComponent(sidebarStudio)
-                                    .addComponent(sidebarCalendar)
-                                    .addComponent(sidebarFnB)
-                                    .addComponent(sidebarReport)
-                                    .addComponent(sidebarLogout))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)))
+                            .addComponent(sidebarDashboard)
+                            .addComponent(sidebarFilm)
+                            .addComponent(sidebarStudio)
+                            .addComponent(sidebarFnB)
+                            .addComponent(sidebarReport)
+                            .addComponent(sidebarCalendar)
+                            .addComponent(sidebarLogout))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
             sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarpanelLayout.createSequentialGroup()
-                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sidebarpanelLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(jLabel2))
                     .addGroup(sidebarpanelLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,12 +175,10 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(sidebarFnB)
                         .addGap(18, 18, 18)
-                        .addComponent(sidebarReport)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sidebarLogout)
-                        .addGap(149, 149, 149)))
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(sidebarReport)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addComponent(sidebarLogout)
+                .addGap(40, 40, 40))
         );
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1126, 768));
@@ -346,10 +336,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, maincontentpanelLayout.createSequentialGroup()
                         .addGroup(maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addGroup(maincontentpanelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(638, 638, 638)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panel_pencarianfilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
@@ -444,7 +432,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

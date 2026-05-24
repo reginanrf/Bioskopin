@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views.admin;
+package views.admin.FilmManagement;
 
 import javax.swing.JOptionPane;
 import java.awt.Color;
@@ -157,7 +157,6 @@ public class FilmManagementFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manajemen Film");
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(240, 0));

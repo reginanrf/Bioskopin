@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package views.admin;
+package views.admin.FilmManagement;
 
 import controllers.FilmController;
 import javax.swing.JOptionPane;
@@ -69,7 +69,6 @@ public class DialogTambahFilm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tambah Data Film");
-        setPreferredSize(new java.awt.Dimension(680, 500));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
 
