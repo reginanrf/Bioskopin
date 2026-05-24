@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import utils.ColorPalette;
 
 /**
  *
@@ -27,6 +28,20 @@ public class FilmManagementFrame extends javax.swing.JFrame {
         initComponents();
         loadDataTabel();
         this.setLocationRelativeTo(null);
+        
+
+        jPanel1.setBackground(ColorPalette.BACKGROUND); 
+
+        jButtonTambahFilm.setBackground(ColorPalette.PRIMARY);
+        jButtonTambahFilm.setForeground(ColorPalette.WHITE);
+
+        jButtonCari.setBackground(ColorPalette.PRIMARY);
+        jButtonCari.setForeground(ColorPalette.WHITE);
+
+        jTableFilm.setBackground(ColorPalette.WHITE);
+        jTableFilm.setGridColor(ColorPalette.BORDER);
+        jTableFilm.setSelectionBackground(ColorPalette.PRIMARY);
+        jTableFilm.setSelectionForeground(ColorPalette.WHITE);
     }
     
     private void loadDataTabel() {

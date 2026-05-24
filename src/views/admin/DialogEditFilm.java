@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import utils.ColorPalette;
+
 /**
  *
  * @author Rafli Ahmad Fauzi
@@ -27,19 +29,27 @@ public class DialogEditFilm extends javax.swing.JDialog {
         initComponents();
         
         this.controller = new FilmController();
-        this.idFilm = idFilm; // Tampung ID Film dari tabel
-        this.setLocationRelativeTo(parent); // Posisikan di tengah layar
+        this.idFilm = idFilm; 
+        this.setLocationRelativeTo(parent);
         
-        // Panggil fungsi untuk mengisi data lama film ke dalam form input
         loadDataFilmLama();
+        
+        jPanel5.setBackground(ColorPalette.WHITE);
+
+        jButtonSimpanEdit.setBackground(ColorPalette.WARNING);
+        jButtonSimpanEdit.setForeground(ColorPalette.SIDEBAR);
+
+        jButtonBatalEdit.setBackground(ColorPalette.BORDER);
+        jButtonBatalEdit.setForeground(ColorPalette.SIDEBAR);
+
+        jButtonBrowsePathEdit.setBackground(ColorPalette.SIDEBAR);
+        jButtonBrowsePathEdit.setForeground(ColorPalette.WHITE);
     }
     
     private void loadDataFilmLama() {
-        // Ambil data satu objek film dari database melalui controller
         Film film = controller.getFilm(idFilm);
         
         if (film != null) {
-            // Set teks data lama ke masing-masing field komponen GUI Anda
             jTextFieldJudulEdit.setText(film.getJudul());
             jComboBoxGenreEdit.setSelectedItem(film.getGenre());
             jSpinnerDurasiEdit.setValue(film.getDurasiMenit());
@@ -251,23 +261,17 @@ public class DialogEditFilm extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxGenreEditActionPerformed
 
     private void jButtonBrowsePathEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBrowsePathEditMouseClicked
-        // 1. Buat objek JFileChooser
         JFileChooser fileChooser = new JFileChooser();
 
-        // 2. Set judul jendela pop-up browser
         fileChooser.setDialogTitle("Pilih Gambar Poster Film");
 
-        // 3. Batasi file yang boleh dipilih hanya berupa format gambar saja
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Gambar (*.jpg, *.jpeg, *.png)", "jpg", "jpeg", "png");
         fileChooser.setFileFilter(filter);
 
-        // 4. Munculkan dialog open file explorer
         int hasilPilihan = fileChooser.showOpenDialog(this);
 
-        // 5. Jika admin memilih file dan menekan tombol "Open/Approve"
         if (hasilPilihan == JFileChooser.APPROVE_OPTION) {
             File fileTerpilih = fileChooser.getSelectedFile();
-            // Set teks tersebut ke dalam JTextField poster path
             jTextFieldPosterPathEdit.setText(fileTerpilih.getName());
         }
     }//GEN-LAST:event_jButtonBrowsePathEditMouseClicked
@@ -288,25 +292,22 @@ public class DialogEditFilm extends javax.swing.JDialog {
     private void jButtonSimpanEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSimpanEditMouseClicked
         // TODO add your handling code here:
         try {
-            // 1. Ambil data baru yang sudah diubah oleh admin di form
             String judul = jTextFieldJudulEdit.getText().trim();
-            String genre = jComboBoxGenreEdit.getSelectedItem().toString(); // Atau jika pakai ComboBox: cbGenre.getSelectedItem().toString();
+            String genre = jComboBoxGenreEdit.getSelectedItem().toString();
             int durasi = (int)jSpinnerDurasiEdit.getValue();
             String sinopsis = jTextAreaSinopsisEdit.getText().trim();
             String posterPath = jTextFieldPosterPathEdit.getText().trim();
 
-            // 2. Validasi manual sederhana sebelum dikirim ke controller
             if (judul.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Judul film tidak boleh kosong!", "Validasi Gagal", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             
-            // 3. Panggil fungsi editFilm di controller (Akan mengeksekusi query UPDATE)
             boolean sukses = controller.editFilm(idFilm, judul, genre, durasi, sinopsis, posterPath);
 
             if (sukses) {
                 JOptionPane.showMessageDialog(this, "Data film berhasil diperbarui!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose(); // Menutup dialog setelah sukses, agar frame utama otomatis refresh tabel
+                this.dispose(); 
             } else {
                 JOptionPane.showMessageDialog(this, "Gagal memperbarui data ke database.", "Error", JOptionPane.ERROR_MESSAGE);
             }

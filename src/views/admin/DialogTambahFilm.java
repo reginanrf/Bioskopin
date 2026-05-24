@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import utils.ColorPalette;
 
 /**
  *
@@ -26,6 +27,17 @@ public class DialogTambahFilm extends javax.swing.JDialog {
         initComponents();
         this.controller = new FilmController();
         this.setLocationRelativeTo(parent);
+        
+        jPanel2.setBackground(ColorPalette.WHITE); 
+
+        jButtonSimpan.setBackground(ColorPalette.PRIMARY);
+        jButtonSimpan.setForeground(ColorPalette.WHITE);
+
+        jButtonBatal.setBackground(ColorPalette.BORDER);
+        jButtonBatal.setForeground(ColorPalette.SIDEBAR);
+
+        jButtonBrowsePath.setBackground(ColorPalette.SIDEBAR);
+        jButtonBrowsePath.setForeground(ColorPalette.WHITE);
     }
 
     /**
