@@ -83,6 +83,34 @@ public class FilmDAO {
 
         return listFilm;
     }
+    
+    // =========================
+    // SEARCH FILMS BY TITLE
+    // =========================
+    public ArrayList<Film> searchFilmsByJudul(String keyword) {
+        ArrayList<Film> listFilm = new ArrayList<>();
+        String sql = "SELECT * FROM films WHERE judul LIKE ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + keyword + "%");
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Film film = new Film();
+                film.setIdFilm(rs.getInt("id_film"));
+                film.setJudul(rs.getString("judul"));
+                film.setGenre(rs.getString("genre"));
+                film.setDurasiMenit(rs.getInt("durasi_menit"));
+                film.setSinopsis(rs.getString("sinopsis"));
+                film.setPosterPath(rs.getString("poster_path"));
+                listFilm.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listFilm;
+    }
 
     // =========================
     // GET FILM BY ID
