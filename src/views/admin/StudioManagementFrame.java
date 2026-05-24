@@ -4,6 +4,8 @@
  */
 package views.admin;
 
+import controllers.StudioController;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author regina
@@ -11,14 +13,23 @@ package views.admin;
 public class StudioManagementFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StudioManagementFrame.class.getName());
-
+    
+    private StudioController studioController;
     /**
      * Creates new form StudioManagementFrame
      */
     public StudioManagementFrame() {
         initComponents();
+        studioController = new StudioController();
+        tampilData();
     }
-
+    
+    public void tampilData() {
+        DefaultTableModel model = studioController.AmbilDataTabel();
+        // Pastikan nama variabel JTable hasil drag-and-drop kamu adalah "tableStudio"
+        tableStudio.setModel(model);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +39,277 @@ public class StudioManagementFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jDialog3 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        Field_NamaStudio = new javax.swing.JTextField();
+        Field_TipeStudio = new javax.swing.JComboBox<>();
+        Field_BarisStudio = new javax.swing.JTextField();
+        Field_KolomStudio = new javax.swing.JTextField();
+        Btn_BatalSimpanStudio = new javax.swing.JButton();
+        Btn_SimpanStudio = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel2.setBackground(new java.awt.Color(0, 51, 102));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Tambah Studio");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Tambahkan Data Studio dengan Mengisi Field di Bawah");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nama Studio");
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tipe Studio");
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Jumlah Baris");
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Jumlah Kolom");
+
+        Field_NamaStudio.addActionListener(this::Field_NamaStudioActionPerformed);
+
+        Field_TipeStudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deluxe", "Ultra XD", "IMAX", "Sphere" }));
+        Field_TipeStudio.addActionListener(this::Field_TipeStudioActionPerformed);
+
+        Field_KolomStudio.addActionListener(this::Field_KolomStudioActionPerformed);
+
+        Btn_BatalSimpanStudio.setText("Batal");
+        Btn_BatalSimpanStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_BatalSimpanStudioMouseClicked(evt);
+            }
+        });
+        Btn_BatalSimpanStudio.addActionListener(this::Btn_BatalSimpanStudioActionPerformed);
+
+        Btn_SimpanStudio.setText("Simpan");
+        Btn_SimpanStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_SimpanStudioMouseClicked(evt);
+            }
+        });
+        Btn_SimpanStudio.addActionListener(this::Btn_SimpanStudioActionPerformed);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(42, 42, 42)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(Field_NamaStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Field_TipeStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(37, 37, 37)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Field_BarisStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Field_KolomStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(Btn_BatalSimpanStudio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Btn_SimpanStudio)
+                        .addGap(44, 44, 44)))
+                .addGap(43, 43, 43))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Field_NamaStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Field_TipeStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Field_BarisStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addComponent(Field_KolomStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Btn_BatalSimpanStudio)
+                    .addComponent(Btn_SimpanStudio))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Field_NamaStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_NamaStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field_NamaStudioActionPerformed
+
+    private void Btn_SimpanStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_SimpanStudioActionPerformed
+        // TODO add your handling code here:
+        String nama = Field_NamaStudio.getText().trim();
+        String tipe = Field_TipeStudio.getSelectedItem().toString();
+        String strBaris = Field_BarisStudio.getText().trim();
+        String strKolom = Field_KolomStudio.getText().trim();
+
+        // 2. Validasi agar user tidak mengosongkan teks
+        if (nama.isEmpty() || strBaris.isEmpty() || strKolom.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Semua field wajib diisi!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            // Konversi string baris dan kolom menjadi format angka murni
+            int baris = Integer.parseInt(strBaris);
+            int kolom = Integer.parseInt(strKolom);
+
+            if (baris <= 0 || kolom <= 0) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Jumlah baris dan kolom harus lebih dari 0!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        
+            // 3. Format nama studio gabungan tipe (Contoh: "Studio 1 (IMAX)")
+            String namaLengkapStudio = nama + " (" + tipe + ")";
+
+            // 4. Kirim data menuju StudioController -> StudioDAO -> Database
+            boolean sukses = studioController.tambahStudio(namaLengkapStudio, baris, kolom);
+
+            if (sukses) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Data Studio berhasil ditambahkan!", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                // Menutup form input setelah berhasil menyimpan data
+                this.dispose();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan data ke database.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            // Validasi jika user tidak sengaja memasukkan huruf pada input baris/kolom
+            javax.swing.JOptionPane.showMessageDialog(this, "Baris dan Kolom harus berupa angka murni!", "Input Salah", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    }//GEN-LAST:event_Btn_SimpanStudioActionPerformed
+
+    private void Btn_BatalSimpanStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BatalSimpanStudioActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_Btn_BatalSimpanStudioActionPerformed
+
+    private void Field_TipeStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_TipeStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field_TipeStudioActionPerformed
+
+    private void Field_KolomStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_KolomStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Field_KolomStudioActionPerformed
+
+    private void Btn_BatalSimpanStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BatalSimpanStudioMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_BatalSimpanStudioMouseClicked
+
+    private void Btn_SimpanStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_SimpanStudioMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Btn_SimpanStudioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -70,5 +337,22 @@ public class StudioManagementFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_BatalSimpanStudio;
+    private javax.swing.JButton Btn_SimpanStudio;
+    private javax.swing.JTextField Field_BarisStudio;
+    private javax.swing.JTextField Field_KolomStudio;
+    private javax.swing.JTextField Field_NamaStudio;
+    private javax.swing.JComboBox<String> Field_TipeStudio;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
