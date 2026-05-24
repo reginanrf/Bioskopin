@@ -4,10 +4,24 @@
  */
 package main;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
+import views.admin.ScheduleManagementFrame;
 /**
  *
  * @author regina
  */
 public class Main {
-    
+   public static void main(String[] args) {
+
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new ScheduleManagementFrame().setVisible(true);
+        });
+    } 
 }
