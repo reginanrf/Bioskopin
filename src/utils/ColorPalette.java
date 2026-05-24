@@ -11,7 +11,7 @@ import java.awt.Color;
  */
 public class ColorPalette {
     public static final Color PRIMARY =
-            new Color(91, 95, 239);
+            new Color(195,156,0);
 
     public static final Color SIDEBAR =
             new Color(16, 25, 53);
