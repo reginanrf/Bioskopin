@@ -6,7 +6,7 @@ package main;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.UIManager;
-import views.admin.ScheduleManagementFrame;
+import views.admin.ScheduleManagement.ScheduleManagementFrame;
 /**
  *
  * @author regina
