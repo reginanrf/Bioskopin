@@ -4,20 +4,105 @@
  */
 package views.admin.ScheduleManagement;
 
+import dao.FilmDAO;
+import dao.ScheduleDAO;
+import dao.StudioDAO;
+
+import models.Film;
+import models.Schedule;
+import models.Studio;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author regina
  */
-public class CreateSchedule extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CreateSchedule.class.getName());
+public class CreateSchedule extends javax.swing.JDialog {
 
-    /**
-     * Creates new form CreateSchedule
-     */
-    public CreateSchedule() {
+    private ArrayList<Film> listFilm;
+    private ArrayList<Studio> listStudio;
+
+    public CreateSchedule(
+            java.awt.Frame parent,
+            boolean modal
+    ) {
+
+        super(parent, modal);
+
         initComponents();
+
+        loadFilm();
+        loadStudio();
+        loadJam();
+
+        setLocationRelativeTo(null);
+        
+        tfHarga.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+
+                char c = evt.getKeyChar();
+
+                if (!Character.isDigit(c)) {
+                    evt.consume();
+                }
+            }
+        });
     }
+
+    //load data film 
+    private void loadFilm() {
+        FilmDAO dao = new FilmDAO();
+        listFilm = dao.getAllFilms();
+        cbFilm.removeAllItems();
+
+        for(Film film : listFilm) {
+            cbFilm.addItem(
+                    film.getJudul()
+            );
+        }
+    }
+
+   //load data studio
+    private void loadStudio() {
+        StudioDAO dao = new StudioDAO();
+        listStudio = dao.getAllStudios();
+        cbStudio.removeAllItems();
+        
+        for(Studio studio : listStudio) {
+            cbStudio.addItem(
+                    studio.getNamaStudio()
+            );
+        }
+    }
+
+    //load jam tayang 
+    private void loadJam() {
+
+        cbJam.removeAllItems();
+
+        cbJam.addItem("10:00:00");
+        cbJam.addItem("13:00:00");
+        cbJam.addItem("16:00:00");
+        cbJam.addItem("19:00:00");
+        cbJam.addItem("21:00:00");
+    }
+
+    //reset form
+    private void resetForm() {
+        cbFilm.setSelectedIndex(0);
+        cbStudio.setSelectedIndex(0);
+        tanggal.setDate(null);
+        cbJam.setSelectedIndex(0);
+        tfHarga.setText("");
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,162 +114,233 @@ public class CreateSchedule extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelHeaderJadwal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbFilm = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbStudio = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        tanggal = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbJam = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tfHarga = new javax.swing.JTextField();
+        buttonSimpan = new javax.swing.JButton();
+        buttonBatal = new javax.swing.JButton();
+        labelSHJadwal = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(750, 550));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tambah Jadwal");
+        setMinimumSize(new java.awt.Dimension(681, 487));
+        setPreferredSize(new java.awt.Dimension(681, 487));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(245, 247, 251));
+        jPanel1.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel1.setMinimumSize(new java.awt.Dimension(681, 487));
         jPanel1.setPreferredSize(new java.awt.Dimension(681, 487));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jLabel1.setText("Form Jadwal Tayang");
+        labelHeaderJadwal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelHeaderJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelHeaderJadwal.setText("Form Jadwal Tayang");
+        jPanel1.add(labelHeaderJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        jLabel2.setText("Film");
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Film:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFilm.addActionListener(this::cbFilmActionPerformed);
+        jPanel1.add(cbFilm, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 299, -1));
 
-        jLabel3.setText("Studio");
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Studio:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStudio.addActionListener(this::cbStudioActionPerformed);
+        jPanel1.add(cbStudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 299, -1));
 
-        jLabel4.setText("Jam Tayang");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Jam Tayang:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
-        jLabel5.setText("Tanggal");
+        tanggal.setForeground(new java.awt.Color(153, 153, 153));
+        tanggal.setToolTipText("Pilih Tanggal");
+        jPanel1.add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 299, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tanggal:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
 
-        jLabel6.setText("Harga(Rp)");
+        cbJam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbJam, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 299, -1));
 
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Harga(Rp):");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
-        jButton1.setText("jButton1");
+        tfHarga.setText("Masukkan angka");
+        tfHarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfHargaMouseClicked(evt);
+            }
+        });
+        tfHarga.addActionListener(this::tfHargaActionPerformed);
+        jPanel1.add(tfHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 299, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
+        buttonSimpan.setBackground(new java.awt.Color(195, 156, 0));
+        buttonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSimpan.setText("Simpan");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
+        jPanel1.add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 86, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        buttonBatal.setBackground(new java.awt.Color(255, 153, 153));
+        buttonBatal.setText("Batal");
+        buttonBatal.addActionListener(this::buttonBatalActionPerformed);
+        jPanel1.add(buttonBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 86, -1));
+
+        labelSHJadwal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelSHJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelSHJadwal.setText("Tambahkan Data Film dengan Mengisi Field Dibawah");
+        jPanel1.add(labelSHJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 16));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHargaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfHargaActionPerformed
+
+    private void cbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFilmActionPerformed
+
+    private void cbStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbStudioActionPerformed
+
+    private void buttonBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_buttonBatalActionPerformed
+
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+        // TODO add your handling code here:
+        try {
+            // AMBIL FILM
+            Film film = listFilm.get(cbFilm.getSelectedIndex());
+
+            // AMBIL STUDIO
+            Studio studio = listStudio.get(cbStudio.getSelectedIndex());
+
+            // AMBIL TANGGAL
+            java.util.Date tanggalTayang = tanggal.getDate();
+
+            // VALIDASI TANGGAL
+            if(tanggalTayang == null) {
+                JOptionPane.showMessageDialog(this, "Tanggal harus diisi!");
+                return;
+            }
+
+            // AMBIL JAM
+            Time jamTayang = Time.valueOf(cbJam.getSelectedItem().toString()    );
+
+            // VALIDASI HARGA
+            if(tfHarga.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Harga tiket harus diisi!");
+                return;
+            }
+
+            // AMBIL HARGA
+            double harga = Double.parseDouble(tfHarga.getText());
+
+            // FORMAT RUPIAH (BACKEND)
+            Locale indonesia = new Locale("id", "ID");
+            
+            NumberFormat rupiahFormat = NumberFormat.getCurrencyInstance(indonesia);
+
+            String hargaRupiah = rupiahFormat.format(harga);
+
+            // OBJECT SCHEDULE
+            Schedule schedule = new Schedule();
+            schedule.setFilm(film);
+            schedule.setStudio(studio);
+            schedule.setTanggalTayang(tanggalTayang);
+            schedule.setJamTayang(jamTayang);
+            schedule.setHargaTiket(harga);
+
+            // INSERT DATABASE
+            ScheduleDAO dao = new ScheduleDAO();
+
+            boolean success = dao.insertSchedule(schedule);
+
+            // HASIL
+            if(success) {
+                
+                dispose();
+                JOptionPane.showMessageDialog(this,"Jadwal berhasil ditambahkan!");
+                
+                
+            } else {
+                JOptionPane.showMessageDialog(this,"Gagal menambahkan jadwal!");
+            }
+
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(this,"Harga harus berupa angka!");
+
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this,"Terjadi kesalahan!");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void tfHargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfHargaMouseClicked
+        // TODO add your handling code here:
+        tfHarga.setText("");
+    }//GEN-LAST:event_tfHargaMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CreateSchedule().setVisible(true));
-    }
+    java.awt.EventQueue.invokeLater(() -> {
+
+        CreateSchedule dialog =
+                new CreateSchedule(
+                        new javax.swing.JFrame(),
+                        true
+                );
+
+        dialog.setVisible(true);
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton buttonBatal;
+    private javax.swing.JButton buttonSimpan;
+    private javax.swing.JComboBox<String> cbFilm;
+    private javax.swing.JComboBox<String> cbJam;
+    private javax.swing.JComboBox<String> cbStudio;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelHeaderJadwal;
+    private javax.swing.JLabel labelSHJadwal;
+    private com.toedter.calendar.JDateChooser tanggal;
+    private javax.swing.JTextField tfHarga;
     // End of variables declaration//GEN-END:variables
 }

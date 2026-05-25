@@ -14,8 +14,8 @@ public class Schedule {
     private int idJadwal;
     private Film film;
     private Studio studio;
-    private Date tanggalTayang;
-    private Time jamTayang;
+    private java.util.Date tanggalTayang;
+    private java.sql.Time jamTayang;
     private double hargaTiket;
 
     public Schedule() {
@@ -57,11 +57,11 @@ public class Schedule {
         this.studio = studio;
     }
 
-    public Date getTanggalTayang() {
+    public java.util.Date getTanggalTayang() {
         return tanggalTayang;
     }
 
-    public void setTanggalTayang(Date tanggalTayang) {
+    public void setTanggalTayang(java.util.Date tanggalTayang) {
         this.tanggalTayang = tanggalTayang;
     }
 
@@ -80,7 +80,8 @@ public class Schedule {
     public void setHargaTiket(double hargaTiket) {
         this.hargaTiket = hargaTiket;
     }
-
+    
+    
     @Override
     public String toString() {
         return film.getJudul() + " - " + jamTayang;
