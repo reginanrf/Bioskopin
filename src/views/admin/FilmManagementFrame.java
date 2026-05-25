@@ -157,7 +157,6 @@ public class FilmManagementFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manajemen Film");
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setPreferredSize(new java.awt.Dimension(240, 0));
