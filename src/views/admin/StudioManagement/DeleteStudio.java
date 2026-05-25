@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views.admin;
+package views.admin.StudioManagement;
 
 /**
  *
- * @author regina
+ * @author rhy1caa
  */
-public class StudioManagementFrame extends javax.swing.JFrame {
+public class DeleteStudio extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StudioManagementFrame.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DeleteStudio.class.getName());
 
     /**
-     * Creates new form StudioManagementFrame
+     * Creates new form CreateStudio
      */
-    public StudioManagementFrame() {
+    public DeleteStudio() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class StudioManagementFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new StudioManagementFrame().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new DeleteStudio().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

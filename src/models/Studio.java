@@ -1,31 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 /**
- *
- * @author regina
+ * @author Bioskopin Team
  */
 public class Studio {
-     private int idStudio;
+
+    // PROPERTI (Berkorelasi dengan kolom di tabel `studios`)
+
+    private int    idStudio;
     private String namaStudio;
-    private int jumlahBaris;
-    private int jumlahKolom;
+    private int    jumlahBaris;
+    private int    jumlahKolom;
 
-    public Studio() {
-    }
+    // CONSTRUCTOR
+   
+    public Studio() {}
 
-    public Studio(int idStudio, String namaStudio,
-                  int jumlahBaris, int jumlahKolom) {
-
-        this.idStudio = idStudio;
-        this.namaStudio = namaStudio;
+    public Studio(int idStudio, String namaStudio, int jumlahBaris, int jumlahKolom) {
+        this.idStudio    = idStudio;
+        this.namaStudio  = namaStudio;
         this.jumlahBaris = jumlahBaris;
         this.jumlahKolom = jumlahKolom;
     }
 
+    public Studio(String namaStudio, int jumlahBaris, int jumlahKolom) {
+        this.namaStudio  = namaStudio;
+        this.jumlahBaris = jumlahBaris;
+        this.jumlahKolom = jumlahKolom;
+    }
+
+    // GETTER & SETTER
+  
     public int getIdStudio() {
         return idStudio;
     }
@@ -56,6 +61,10 @@ public class Studio {
 
     public void setJumlahKolom(int jumlahKolom) {
         this.jumlahKolom = jumlahKolom;
+    }
+
+    public int getKapasitas() {
+        return jumlahBaris * jumlahKolom;
     }
 
     @Override
