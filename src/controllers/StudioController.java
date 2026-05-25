@@ -1,51 +1,74 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controllers;
 
 import dao.StudioDAO;
 import models.Studio;
+
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author rhy1caa
- */
 public class StudioController {
-    private StudioDAO studioDAO;
+
+    private static final Logger logger = Logger.getLogger(StudioController.class.getName());
+
+    private final StudioDAO studioDAO;
 
     public StudioController() {
         this.studioDAO = new StudioDAO();
     }
-}
 
-public DefaultTableModel AmbilDataTabel() {
-        String[] header = {"ID Studio", "Nama Studio", "Jumlah Baris", "Jumlah Kolom"};
-        DefaultTableModel model = new DefaultTableModel(header, 0);
+    public boolean isDataKosong() {
+        return studioDAO.isStudioTableEmpty();
+    }
+    
+    // CREATE
+   
+    public boolean tambahStudio(String namaLengkap, int baris, int kolom) {
+        Studio studio = new Studio(namaLengkap, baris, kolom);
+        return studioDAO.insertStudio(studio);
+    }
+    
+    // READ    
+
+    public DefaultTableModel getTableModel() {
+        String[] header = {"ID Studio", "Nama Studio", "Jumlah Baris", "Jumlah Kolom", "Kapasitas"};
+        
+        DefaultTableModel model = new DefaultTableModel(header, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         ArrayList<Studio> list = studioDAO.getAllStudios();
-
-        // Looping untuk memasukkan data baris demi baris
         for (Studio s : list) {
             Object[] row = {
                 s.getIdStudio(),
                 s.getNamaStudio(),
                 s.getJumlahBaris(),
-                s.getJumlahKolom()
+                s.getJumlahKolom(),
+                s.getKapasitas()   // Dihitung otomatis dari model: baris × kolom
             };
             model.addRow(row);
         }
-
         return model;
     }
 
-    public boolean tambahStudio(String nama, int baris, int kolom) {
-        Studio studio = new Studio();
-        studio.setNamaStudio(nama);
-        studio.setJumlahBaris(baris);
-        studio.setJumlahKolom(kolom);
-        return studioDAO.insertStudio(studio);
+ 
+    public Studio getStudioById(int idStudio) {
+        return studioDAO.getStudioById(idStudio);
+    }
+    
+    // UPDATE
+   
+    public boolean updateStudio(int idStudio, String namaLengkap, int baris, int kolom) {
+        Studio studio = new Studio(idStudio, namaLengkap, baris, kolom);
+        return studioDAO.updateStudio(studio);
     }
 
+    // DELETE
+    
+    public boolean hapusStudio(int idStudio) {
+        return studioDAO.deleteStudio(idStudio);
+    }
+}
