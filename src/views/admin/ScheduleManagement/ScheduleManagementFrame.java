@@ -184,7 +184,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarStudio = new javax.swing.JLabel();
         sidebarCalendar = new javax.swing.JLabel();
         sidebarFnB = new javax.swing.JLabel();
-        sidebarReport = new javax.swing.JLabel();
         sidebarLogout = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         maincontentpanel = new javax.swing.JPanel();
@@ -261,11 +260,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
         sidebarFnB.setText("  F&B");
 
-        sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarReport.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/docs.png"))); // NOI18N
-        sidebarReport.setText("Report");
-
         sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
         sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
@@ -286,7 +280,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                             .addComponent(sidebarFilm)
                             .addComponent(sidebarStudio)
                             .addComponent(sidebarFnB)
-                            .addComponent(sidebarReport)
                             .addComponent(sidebarCalendar)
                             .addComponent(sidebarLogout))))
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -306,9 +299,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 .addComponent(sidebarCalendar)
                 .addGap(18, 18, 18)
                 .addComponent(sidebarFnB)
-                .addGap(18, 18, 18)
-                .addComponent(sidebarReport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(40, 40, 40))
         );
@@ -609,7 +600,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel sidebarFilm;
     private javax.swing.JLabel sidebarFnB;
     private javax.swing.JLabel sidebarLogout;
-    private javax.swing.JLabel sidebarReport;
     private javax.swing.JLabel sidebarStudio;
     private javax.swing.JPanel sidebarpanel;
     private javax.swing.JTable tabelDaftarTayang;
