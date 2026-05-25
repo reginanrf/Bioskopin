@@ -4,20 +4,114 @@
  */
 package views.admin.ScheduleManagement;
 
-/**
- *
- * @author regina
- */
-public class DeleteSchedule extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DeleteSchedule.class.getName());
+import dao.ScheduleDAO;
 
-    /**
-     * Creates new form DeleteSchedule
-     */
-    public DeleteSchedule() {
+import models.Schedule;
+
+import javax.swing.JOptionPane;
+
+public class DeleteSchedule extends javax.swing.JDialog {
+
+    private Schedule schedule;
+
+    public DeleteSchedule(
+            java.awt.Frame parent,
+            boolean modal,
+            Schedule schedule
+    ) {
+
+        super(parent, modal);
+
         initComponents();
+        
+        setLocationRelativeTo(null);
+        this.schedule = schedule;
+        loadData();
     }
+
+    //load data ke form
+    private void loadData() {
+
+        cbFilm.removeAllItems();
+        cbStudio.removeAllItems();
+        cbJam.removeAllItems();
+
+        // Film
+        cbFilm.addItem(
+                schedule
+                        .getFilm()
+                        .getJudul()
+        );
+
+        // Studio
+        cbStudio.addItem(
+                schedule
+                        .getStudio()
+                        .getNamaStudio()
+        );
+
+        // Tanggal
+        tanggal.setDate(
+                schedule.getTanggalTayang()
+        );
+
+        // Jam
+        cbJam.addItem(
+                schedule
+                        .getJamTayang()
+                        .toString()
+        );
+
+        // Disable semua input
+        cbFilm.setEnabled(false);
+
+        cbStudio.setEnabled(false);
+
+        tanggal.setEnabled(false);
+
+        cbJam.setEnabled(false);
+    }
+
+    //delete data
+    private void deleteData() {
+
+        int confirm =
+                JOptionPane.showConfirmDialog(
+                        this,
+                        "Yakin ingin menghapus jadwal ini?",
+                        "Konfirmasi Hapus",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+        if(confirm == JOptionPane.YES_OPTION) {
+
+            ScheduleDAO dao =
+                    new ScheduleDAO();
+
+            boolean success =
+                    dao.deleteSchedule(
+                            schedule.getIdJadwal()
+                    );
+
+            if(success) {
+                dispose();
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Jadwal berhasil dihapus!"
+                );
+
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Gagal menghapus jadwal!"
+                );
+            }
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,47 +122,124 @@ public class DeleteSchedule extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        labelHeaderJadwal = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbFilm = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        cbStudio = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        tanggal = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        cbJam = new javax.swing.JComboBox<>();
+        buttonHapus = new javax.swing.JButton();
+        buttonBatal = new javax.swing.JButton();
+        labelSHJadwal = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Hapus Jadwal");
+        setMinimumSize(new java.awt.Dimension(681, 487));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel1.setMinimumSize(new java.awt.Dimension(681, 487));
+        jPanel1.setPreferredSize(new java.awt.Dimension(681, 487));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelHeaderJadwal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelHeaderJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelHeaderJadwal.setText("Hapus Jadwal");
+        jPanel1.add(labelHeaderJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Film:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+
+        cbFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFilm.addActionListener(this::cbFilmActionPerformed);
+        jPanel1.add(cbFilm, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 299, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Studio:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+
+        cbStudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStudio.addActionListener(this::cbStudioActionPerformed);
+        jPanel1.add(cbStudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 299, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Jam Tayang:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
+        jPanel1.add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 299, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tanggal:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+
+        cbJam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbJam, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 299, -1));
+
+        buttonHapus.setBackground(new java.awt.Color(204, 0, 0));
+        buttonHapus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonHapus.setForeground(new java.awt.Color(255, 255, 255));
+        buttonHapus.setText("Hapus");
+        buttonHapus.addActionListener(this::buttonHapusActionPerformed);
+        jPanel1.add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 86, -1));
+
+        buttonBatal.setText("Batal");
+        buttonBatal.addActionListener(this::buttonBatalActionPerformed);
+        jPanel1.add(buttonBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 86, -1));
+
+        labelSHJadwal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelSHJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelSHJadwal.setText("Masukkan data yang akan dihapus jadwalnya");
+        jPanel1.add(labelSHJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 16));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFilmActionPerformed
+
+    private void cbStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbStudioActionPerformed
+
+    private void buttonBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_buttonBatalActionPerformed
+
+    private void buttonHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHapusActionPerformed
+        // TODO add your handling code here:
+        deleteData();
+    }//GEN-LAST:event_buttonHapusActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DeleteSchedule().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBatal;
+    private javax.swing.JButton buttonHapus;
+    private javax.swing.JComboBox<String> cbFilm;
+    private javax.swing.JComboBox<String> cbJam;
+    private javax.swing.JComboBox<String> cbStudio;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelHeaderJadwal;
+    private javax.swing.JLabel labelSHJadwal;
+    private com.toedter.calendar.JDateChooser tanggal;
     // End of variables declaration//GEN-END:variables
 }

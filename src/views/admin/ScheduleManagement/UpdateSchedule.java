@@ -4,20 +4,190 @@
  */
 package views.admin.ScheduleManagement;
 
-/**
- *
- * @author regina
- */
-public class UpdateSchedule extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateSchedule.class.getName());
+import dao.FilmDAO;
+import dao.ScheduleDAO;
+import dao.StudioDAO;
 
-    /**
-     * Creates new form UpdateSchedule
-     */
-    public UpdateSchedule() {
+import models.Film;
+import models.Schedule;
+import models.Studio;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class UpdateSchedule extends javax.swing.JDialog {
+
+    private Schedule schedule;
+
+    private ArrayList<Film> listFilm;
+    private ArrayList<Studio> listStudio;
+
+    public UpdateSchedule(
+            java.awt.Frame parent,
+            boolean modal,
+            Schedule schedule
+    ) {
+
+        super(parent, modal);
+
         initComponents();
+
+        this.schedule = schedule;
+        
+        setLocationRelativeTo(null);
+        loadFilm();
+        loadStudio();
+        loadJam();
+
+        setData();
     }
+
+    //load film
+    private void loadFilm() {
+        FilmDAO dao = new FilmDAO();
+        listFilm = dao.getAllFilms();
+        cbFilm.removeAllItems();
+        for(Film film : listFilm) {
+            cbFilm.addItem(
+                    film.getJudul()
+            );
+        }
+    }
+
+    //load studio
+    private void loadStudio() {
+        StudioDAO dao = new StudioDAO();
+        listStudio = dao.getAllStudios();
+        cbStudio.removeAllItems();
+        
+        for(Studio studio : listStudio) {
+            cbStudio.addItem(
+                    studio.getNamaStudio()
+            );
+        }
+    }
+
+    //load jam
+    private void loadJam() {
+
+        cbJam.removeAllItems();
+
+        cbJam.addItem("10:00:00");
+        cbJam.addItem("13:00:00");
+        cbJam.addItem("16:00:00");
+        cbJam.addItem("19:00:00");
+        cbJam.addItem("22:00:00");
+    }
+
+    //set data ke form
+    private void setData() {
+
+        cbFilm.setSelectedItem(
+                schedule
+                        .getFilm()
+                        .getJudul()
+        );
+
+        cbStudio.setSelectedItem(
+                schedule
+                        .getStudio()
+                        .getNamaStudio()
+        );
+
+        tanggal.setDate(
+                schedule.getTanggalTayang()
+        );
+
+        cbJam.setSelectedItem(
+                schedule
+                        .getJamTayang()
+                        .toString()
+        );
+
+        tfHarga.setText(
+                String.valueOf(
+                        schedule.getHargaTiket()
+                )
+        );
+    }
+
+    //update data 
+    private void updateData() {
+        try {
+            Film film =
+                    listFilm.get(
+                            cbFilm.getSelectedIndex()
+                    );
+
+            Studio studio =
+                    listStudio.get(
+                            cbStudio.getSelectedIndex()
+                    );
+
+            java.util.Date tanggalTayang =
+                    tanggal.getDate();
+
+            String jam =
+                    cbJam.getSelectedItem()
+                            .toString();
+
+            double harga =
+                    Double.parseDouble(
+                            tfHarga.getText()
+                    );
+
+            schedule.setFilm(film);
+
+            schedule.setStudio(studio);
+
+            schedule.setTanggalTayang(
+                    tanggalTayang
+            );
+
+            schedule.setJamTayang(
+                    Time.valueOf(jam)
+            );
+
+            schedule.setHargaTiket(
+                    harga
+            );
+
+            ScheduleDAO dao =
+                    new ScheduleDAO();
+
+            boolean success =
+                    dao.updateSchedule(
+                            schedule
+                    );
+
+            if(success) {
+                dispose();
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Jadwal berhasil diupdate!"
+                );
+
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Gagal update data!"
+                );
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Terjadi error!"
+            );
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,47 +198,151 @@ public class UpdateSchedule extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        labelHeaderJadwal = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbFilm = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        cbStudio = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        tanggal = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        cbJam = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        tfHarga = new javax.swing.JTextField();
+        buttonSimpan = new javax.swing.JButton();
+        buttonBatal = new javax.swing.JButton();
+        labelSHJadwal = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ubah Data");
+        setMinimumSize(new java.awt.Dimension(681, 487));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel1.setMinimumSize(new java.awt.Dimension(681, 487));
+        jPanel1.setPreferredSize(new java.awt.Dimension(681, 487));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelHeaderJadwal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelHeaderJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelHeaderJadwal.setText("Edit Jadwal Tayang");
+        jPanel1.add(labelHeaderJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Film:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+
+        cbFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFilm.addActionListener(this::cbFilmActionPerformed);
+        jPanel1.add(cbFilm, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 299, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Studio:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+
+        cbStudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbStudio.addActionListener(this::cbStudioActionPerformed);
+        jPanel1.add(cbStudio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 299, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Jam Tayang:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
+        jPanel1.add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 299, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tanggal:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+
+        cbJam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(cbJam, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 299, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Harga(Rp):");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+
+        tfHarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfHargaMouseClicked(evt);
+            }
+        });
+        tfHarga.addActionListener(this::tfHargaActionPerformed);
+        jPanel1.add(tfHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 299, -1));
+
+        buttonSimpan.setBackground(new java.awt.Color(195, 156, 0));
+        buttonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonSimpan.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSimpan.setText("Simpan");
+        buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
+        jPanel1.add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 86, -1));
+
+        buttonBatal.setBackground(new java.awt.Color(255, 153, 153));
+        buttonBatal.setText("Batal");
+        buttonBatal.addActionListener(this::buttonBatalActionPerformed);
+        jPanel1.add(buttonBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 86, -1));
+
+        labelSHJadwal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelSHJadwal.setForeground(new java.awt.Color(255, 255, 255));
+        labelSHJadwal.setText("Ubah Data Film dengan Mengisi Field Dibawah");
+        jPanel1.add(labelSHJadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, 16));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tfHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfHargaActionPerformed
+
+    private void cbFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFilmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFilmActionPerformed
+
+    private void cbStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStudioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbStudioActionPerformed
+
+    private void buttonBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBatalActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_buttonBatalActionPerformed
+
+    private void buttonSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSimpanActionPerformed
+        // TODO add your handling code here:
+        updateData();
+    }//GEN-LAST:event_buttonSimpanActionPerformed
+
+    private void tfHargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfHargaMouseClicked
+        // TODO add your handling code here:
+        tfHarga.setText("");
+    }//GEN-LAST:event_tfHargaMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new UpdateSchedule().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBatal;
+    private javax.swing.JButton buttonSimpan;
+    private javax.swing.JComboBox<String> cbFilm;
+    private javax.swing.JComboBox<String> cbJam;
+    private javax.swing.JComboBox<String> cbStudio;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelHeaderJadwal;
+    private javax.swing.JLabel labelSHJadwal;
+    private com.toedter.calendar.JDateChooser tanggal;
+    private javax.swing.JTextField tfHarga;
     // End of variables declaration//GEN-END:variables
 }

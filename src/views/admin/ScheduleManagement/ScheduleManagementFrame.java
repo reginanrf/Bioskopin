@@ -5,23 +5,165 @@
 package views.admin.ScheduleManagement;
 
 import utils.ColorPalette;
+import dao.FilmDAO;
+import dao.ScheduleDAO;
+import dao.StudioDAO;
+
+import models.Film;
+import models.Schedule;
+import models.Studio;
+
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+import utils.ActionButtonEditor;
+import utils.ActionButtonRenderer;
+import views.admin.ScheduleManagement.CreateSchedule;
+import com.formdev.flatlaf.FlatLightLaf;
 /**
  *
  * @author regina
  */
 public class ScheduleManagementFrame extends javax.swing.JFrame {
-    
+  
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ScheduleManagementFrame.class.getName());
-
+    private DefaultTableModel tableModel;
+    private ArrayList<Schedule> listSchedule;
     /**
      * Creates new form ScheduleManagementFrame
      */
+    
+    private void setupTable() {
+
+            tableModel = new DefaultTableModel(
+                            new Object[] {
+                                "No",
+                                "Film",
+                                "Studio",
+                                "Tanggal",
+                                "Jam",
+                                "Harga",
+                                "Aksi"
+                            },
+                            0);
+            tabelDaftarTayang.setModel(tableModel);
+            
+            tabelDaftarTayang.getColumnModel()
+                    .getColumn(6)
+                    .setCellRenderer(
+                            new ActionButtonRenderer()
+                    );
+
+            tabelDaftarTayang.getColumnModel()
+                    .getColumn(6)
+                    .setCellEditor(
+                            new ActionButtonEditor(this)
+                    );
+            
+            tabelDaftarTayang.setRowHeight(40);
+            tabelDaftarTayang.setShowGrid(false);
+            tabelDaftarTayang.setIntercellSpacing(new java.awt.Dimension(0, 0));
+            tabelDaftarTayang.getColumnModel().getColumn(0).setMaxWidth(50);
+            tabelDaftarTayang.getColumnModel().getColumn(0).setMinWidth(50);
+        }
+        
+        public void loadTable() {
+            ScheduleDAO dao = new ScheduleDAO();
+            listSchedule = dao.getAllSchedules();
+            tableModel.setRowCount(0);
+            int no = 1;
+            
+            for(Schedule s : listSchedule) {
+                Object[] row = {
+                    no++,
+                    s.getFilm().getJudul(),
+                    s.getStudio().getNamaStudio(),
+                    s.getTanggalTayang(),
+                    s.getJamTayang(),
+                    s.getHargaTiket(),
+                    "Aksi"
+                };
+                tableModel.addRow(row);
+            }
+            updateTotal();
+        }
+        
+        private void loadFilmFilter() {
+            FilmDAO dao = new FilmDAO();
+            ArrayList<Film> list = dao.getAllFilms();
+            cbPilihFilm.removeAllItems();
+            cbPilihFilm.addItem("Semua Film");
+            
+            for(Film film : list) {
+                cbPilihFilm.addItem(film.getJudul());
+            }
+        }
+        
+        private void loadStudioFilter() {
+            StudioDAO dao = new StudioDAO();
+            ArrayList<Studio> list = dao.getAllStudios();
+            cbPilihStudio.removeAllItems();
+            cbPilihStudio.addItem("Semua Studio");
+
+            for(Studio studio : list) {
+                cbPilihStudio.addItem(studio.getNamaStudio());
+            }
+        }
+        
+        private void updateTotal() {
+            totalJadwal.setText(
+                    "Total : "
+                    + tableModel.getRowCount()
+                    + " Jadwal"
+            );
+        }
+        
+        private void searchSchedule() {
+            String keyword = tfCariFilm.getText();
+            String film = cbPilihFilm.getSelectedItem().toString();
+            String studio = cbPilihStudio.getSelectedItem().toString();
+            java.util.Date tanggal = jDateChooser1.getDate();
+            ScheduleDAO dao = new ScheduleDAO();
+            listSchedule =
+                    dao.searchSchedule(
+                            keyword,
+                            film,
+                            studio,
+                            tanggal
+                    );
+
+            tableModel.setRowCount(0);
+            int no = 1;
+            for(Schedule s : listSchedule) {
+                Object[] row = {
+                    no++,
+                    s.getFilm().getJudul(),
+                    s.getStudio().getNamaStudio(),
+                    s.getTanggalTayang(),
+                    s.getJamTayang(),
+                    s.getHargaTiket(),
+                    "Edit | Hapus"
+                };
+                tableModel.addRow(row);
+            }
+            updateTotal();           
+        }
+        
+        public ArrayList<Schedule> getScheduleList() {
+            return listSchedule;
+        }
     public ScheduleManagementFrame() {
         initComponents();
         
         /* warna sidebar dan main content */
         sidebarpanel.setBackground(ColorPalette.SIDEBAR);
         maincontentpanel.setBackground(ColorPalette.BACKGROUND);
+        setupTable();
+        loadTable();
+        loadFilmFilter();
+        loadStudioFilter();
+        
+        
     }
 
     /**
@@ -36,7 +178,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         sidebarpanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sidebarDashboard = new javax.swing.JLabel();
         sidebarFilm = new javax.swing.JLabel();
@@ -51,17 +192,18 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         panel_pencarianfilter = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        tfCariFilm = new javax.swing.JTextField();
+        cbPilihFilm = new javax.swing.JComboBox<>();
+        cbPilihStudio = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        buttonCari = new javax.swing.JButton();
+        buttonRefresh = new javax.swing.JButton();
+        buttonTambah = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelDaftarTayang = new javax.swing.JTable();
+        totalJadwal = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,10 +233,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
         sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(140, 76));
 
         sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -113,9 +252,9 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarStudio.setText("  Studio");
 
         sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarCalendar.setForeground(new java.awt.Color(195, 156, 0));
         sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
-        sidebarCalendar.setText("Schedule");
+        sidebarCalendar.setText("  Schedule");
 
         sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
@@ -150,32 +289,25 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                             .addComponent(sidebarReport)
                             .addComponent(sidebarCalendar)
                             .addComponent(sidebarLogout))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
             sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidebarpanelLayout.createSequentialGroup()
-                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sidebarpanelLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel2))
-                    .addGroup(sidebarpanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(sidebarDashboard)
-                        .addGap(18, 18, 18)
-                        .addComponent(sidebarFilm)
-                        .addGap(18, 18, 18)
-                        .addComponent(sidebarStudio)
-                        .addGap(18, 18, 18)
-                        .addComponent(sidebarCalendar)
-                        .addGap(18, 18, 18)
-                        .addComponent(sidebarFnB)
-                        .addGap(18, 18, 18)
-                        .addComponent(sidebarReport)))
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(sidebarDashboard)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFilm)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarStudio)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarCalendar)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarReport)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(40, 40, 40))
@@ -195,12 +327,14 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         );
 
         maincontentpanel.setBackground(new java.awt.Color(245, 247, 251));
+        maincontentpanel.setToolTipText("Schedule Management");
         maincontentpanel.setPreferredSize(new java.awt.Dimension(1126, 730));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Schedule Management");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("Kelola jadwal tayang film");
 
@@ -211,24 +345,31 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(16, 25, 53));
         jLabel6.setText("Pencarian & Film");
 
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setText("Cari film...");
-        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+        tfCariFilm.setForeground(new java.awt.Color(102, 102, 102));
+        tfCariFilm.setText("Cari film...");
+        tfCariFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfCariFilmMouseClicked(evt);
+            }
+        });
+        tfCariFilm.addActionListener(this::tfCariFilmActionPerformed);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setToolTipText("");
+        cbPilihFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPilihFilm.setToolTipText("");
+        cbPilihFilm.addActionListener(this::cbPilihFilmActionPerformed);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setToolTipText("");
+        cbPilihStudio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPilihStudio.setToolTipText("");
 
-        jButton4.setBackground(new java.awt.Color(195, 156, 0));
-        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search-putih.png"))); // NOI18N
-        jButton4.setText("Cari");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        buttonCari.setBackground(new java.awt.Color(195, 156, 0));
+        buttonCari.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        buttonCari.setForeground(new java.awt.Color(255, 255, 255));
+        buttonCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search-putih.png"))); // NOI18N
+        buttonCari.setText("Cari");
+        buttonCari.addActionListener(this::buttonCariActionPerformed);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reset.png"))); // NOI18N
+        buttonRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reset.png"))); // NOI18N
+        buttonRefresh.addActionListener(this::buttonRefreshActionPerformed);
 
         javax.swing.GroupLayout panel_pencarianfilterLayout = new javax.swing.GroupLayout(panel_pencarianfilter);
         panel_pencarianfilter.setLayout(panel_pencarianfilterLayout);
@@ -239,17 +380,17 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(panel_pencarianfilterLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfCariFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPilihFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPilihStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jButton4)
+                        .addComponent(buttonCari)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_pencarianfilterLayout.setVerticalGroup(
@@ -260,22 +401,22 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfCariFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPilihFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPilihStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(buttonCari, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(195, 156, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("+ Tambah Jadwal");
-        jButton1.setPreferredSize(new java.awt.Dimension(155, 35));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        buttonTambah.setBackground(new java.awt.Color(195, 156, 0));
+        buttonTambah.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        buttonTambah.setForeground(new java.awt.Color(255, 255, 255));
+        buttonTambah.setText("+ Tambah Jadwal");
+        buttonTambah.setPreferredSize(new java.awt.Dimension(155, 35));
+        buttonTambah.addActionListener(this::buttonTambahActionPerformed);
 
         jPanel4.setBackground(new java.awt.Color(253, 254, 255));
 
@@ -284,26 +425,29 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(16, 25, 53));
         jLabel7.setText("Daftar Jadwal Tayang");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDaftarTayang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, "Edit | Hapus"},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No", "Film", "Studio", "Tanggal", "Jam", "Harga", "Edit", ""
+                "No", "Film", "Studio", "Tanggal", "Jam", "Harga", "Aksi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelDaftarTayang);
+
+        totalJadwal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        totalJadwal.setText("Total : -");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -312,8 +456,9 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(totalJadwal)
+                    .addComponent(jLabel7)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -322,7 +467,10 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totalJadwal)
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout maincontentpanelLayout = new javax.swing.GroupLayout(maincontentpanel);
@@ -338,7 +486,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panel_pencarianfilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
@@ -351,8 +499,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(buttonTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(panel_pencarianfilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,36 +536,48 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTambahActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        CreateSchedule dialog = new CreateSchedule(this,true);
+        dialog.setVisible(true);
+        loadTable();
+    }//GEN-LAST:event_buttonTambahActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfCariFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariFilmActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfCariFilmActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void buttonCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        searchSchedule();
+    }//GEN-LAST:event_buttonCariActionPerformed
+
+    private void cbPilihFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPilihFilmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPilihFilmActionPerformed
+
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        // TODO add your handling code here:
+        tfCariFilm.setText("");
+        cbPilihFilm.setSelectedIndex(0);
+        cbPilihStudio.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
+        loadTable();
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
+    private void tfCariFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfCariFilmMouseClicked
+        // TODO add your handling code here:
+        tfCariFilm.setText("");
+    }//GEN-LAST:event_tfCariFilmMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Semaincontentreadsck and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize FlatLaf");
         }
         //</editor-fold>
         
@@ -426,13 +586,12 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton buttonCari;
+    private javax.swing.JButton buttonRefresh;
+    private javax.swing.JButton buttonTambah;
+    private javax.swing.JComboBox<String> cbPilihFilm;
+    private javax.swing.JComboBox<String> cbPilihStudio;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -443,8 +602,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel maincontentpanel;
     private javax.swing.JPanel panel_pencarianfilter;
     private javax.swing.JLabel sidebarCalendar;
@@ -455,5 +612,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel sidebarReport;
     private javax.swing.JLabel sidebarStudio;
     private javax.swing.JPanel sidebarpanel;
+    private javax.swing.JTable tabelDaftarTayang;
+    private javax.swing.JTextField tfCariFilm;
+    private javax.swing.JLabel totalJadwal;
     // End of variables declaration//GEN-END:variables
 }
