@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package views.admin;
+package views.admin.FilmManagement;
 
 import controllers.FilmController;
 import models.Film;
@@ -34,10 +34,10 @@ public class DialogEditFilm extends javax.swing.JDialog {
         
         loadDataFilmLama();
         
-        jPanel5.setBackground(ColorPalette.WHITE);
+        jPanel5.setBackground(ColorPalette.SIDEBAR);
 
-        jButtonSimpanEdit.setBackground(ColorPalette.WARNING);
-        jButtonSimpanEdit.setForeground(ColorPalette.SIDEBAR);
+        jButtonSimpanEdit.setBackground(ColorPalette.PRIMARY);
+        jButtonSimpanEdit.setForeground(ColorPalette.WHITE);
 
         jButtonBatalEdit.setBackground(ColorPalette.BORDER);
         jButtonBatalEdit.setForeground(ColorPalette.SIDEBAR);
@@ -91,7 +91,7 @@ public class DialogEditFilm extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Data Film");
 
-        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setBackground(new java.awt.Color(16, 25, 53));
 
         jLabelJudulEdit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelJudulEdit.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,19 +102,19 @@ public class DialogEditFilm extends javax.swing.JDialog {
         jLabelSubJudulEdit.setText("Edit Data Film dengan Mengubah Isi Field Dibawah");
 
         jLabelJudul3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelJudul3.setText("Judul");
+        jLabelJudul3.setText("Judul :");
 
         jLabelGenre3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelGenre3.setText("Genre");
+        jLabelGenre3.setText("Genre :");
 
         jLabelDurasi3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDurasi3.setText("Durasi (Menit)");
+        jLabelDurasi3.setText("Durasi (Menit) :");
 
         jLabelSinopsis3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelSinopsis3.setText("Sinopsis");
+        jLabelSinopsis3.setText("Sinopsis :");
 
         jLabelPosterPath3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPosterPath3.setText("Poster Path");
+        jLabelPosterPath3.setText("Poster Path :");
 
         jTextFieldPosterPathEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +171,7 @@ public class DialogEditFilm extends javax.swing.JDialog {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

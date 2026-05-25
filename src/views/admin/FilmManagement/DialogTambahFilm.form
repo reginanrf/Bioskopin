@@ -37,7 +37,7 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="33" red="0" type="rgb"/>
+          <Color blue="35" green="19" red="10" type="rgb"/>
         </Property>
       </Properties>
 
@@ -45,7 +45,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="109" max="32767" attributes="0"/>
+                  <EmptySpace pref="103" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -158,7 +158,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Judul"/>
+            <Property name="text" type="java.lang.String" value="Judul :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldJudul">
@@ -168,7 +168,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Genre"/>
+            <Property name="text" type="java.lang.String" value="Genre :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDurasi">
@@ -176,7 +176,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Durasi (Menit)"/>
+            <Property name="text" type="java.lang.String" value="Durasi (Menit) :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelSinopsis">
@@ -184,7 +184,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Sinopsis"/>
+            <Property name="text" type="java.lang.String" value="Sinopsis :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPosterPath">
@@ -192,7 +192,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Poster Path"/>
+            <Property name="text" type="java.lang.String" value="Poster Path :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPosterPath">

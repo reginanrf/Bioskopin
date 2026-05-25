@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package views.admin;
+package views.admin.FilmManagement;
 
 import controllers.FilmController;
 import javax.swing.JOptionPane;
@@ -28,7 +28,7 @@ public class DialogTambahFilm extends javax.swing.JDialog {
         this.controller = new FilmController();
         this.setLocationRelativeTo(parent);
         
-        jPanel2.setBackground(ColorPalette.WHITE); 
+        jPanel2.setBackground(ColorPalette.SIDEBAR); 
 
         jButtonSimpan.setBackground(ColorPalette.PRIMARY);
         jButtonSimpan.setForeground(ColorPalette.WHITE);
@@ -70,7 +70,7 @@ public class DialogTambahFilm extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tambah Data Film");
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel2.setBackground(new java.awt.Color(16, 25, 53));
 
         jLabelJudulTambah.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelJudulTambah.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,19 +81,19 @@ public class DialogTambahFilm extends javax.swing.JDialog {
         jLabelSubJudulTambah.setText("Tambahkan Data Film dengan Mengisi Field Dibawah");
 
         jLabelJudul.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelJudul.setText("Judul");
+        jLabelJudul.setText("Judul :");
 
         jLabelGenre.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelGenre.setText("Genre");
+        jLabelGenre.setText("Genre :");
 
         jLabelDurasi.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelDurasi.setText("Durasi (Menit)");
+        jLabelDurasi.setText("Durasi (Menit) :");
 
         jLabelSinopsis.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelSinopsis.setText("Sinopsis");
+        jLabelSinopsis.setText("Sinopsis :");
 
         jLabelPosterPath.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelPosterPath.setText("Poster Path");
+        jLabelPosterPath.setText("Poster Path :");
 
         jTextFieldPosterPath.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,7 +150,7 @@ public class DialogTambahFilm extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

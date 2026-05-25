@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views.admin;
+package views.admin.FilmManagement;
 
 import javax.swing.JOptionPane;
 import java.awt.Color;
@@ -30,7 +30,9 @@ public class FilmManagementFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
 
-        jPanel1.setBackground(ColorPalette.BACKGROUND); 
+        jPanel2.setBackground(ColorPalette.BACKGROUND); 
+        jPanel1.setBackground(ColorPalette.SIDEBAR);
+
 
         jButtonTambahFilm.setBackground(ColorPalette.PRIMARY);
         jButtonTambahFilm.setForeground(ColorPalette.WHITE);
@@ -157,8 +159,9 @@ public class FilmManagementFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manajemen Film");
+        setPreferredSize(new java.awt.Dimension(1366, 730));
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel1.setBackground(new java.awt.Color(16, 25, 53));
         jPanel1.setPreferredSize(new java.awt.Dimension(240, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -172,18 +175,19 @@ public class FilmManagementFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(1126, 578));
 
         jLabelJudul.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabelJudul.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelJudul.setForeground(new java.awt.Color(51, 51, 51));
         jLabelJudul.setText("Manajemen Film");
 
         jLabelSubJudul.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabelSubJudul.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelSubJudul.setForeground(new java.awt.Color(51, 51, 51));
         jLabelSubJudul.setText("Kelola data film");
 
-        jButtonTambahFilm.setText("Tambah Film");
+        jButtonTambahFilm.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jButtonTambahFilm.setText("+ Tambah Film");
         jButtonTambahFilm.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonTambahFilmMouseClicked(evt);
@@ -232,10 +236,10 @@ public class FilmManagementFrame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1084, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextFieldCari)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldCari, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButtonCari)
-                                .addGap(201, 201, 201)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonTambahFilm))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabelSubJudul)
@@ -251,13 +255,13 @@ public class FilmManagementFrame extends javax.swing.JFrame {
                 .addComponent(jLabelSubJudul)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTambahFilm)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonTambahFilm)
-                        .addComponent(jButtonCari))
-                    .addComponent(jTextFieldCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCari)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,8 +275,8 @@ public class FilmManagementFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
         );
 
         pack();

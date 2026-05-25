@@ -27,11 +27,11 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
         renderPanel.setOpaque(true);
         
         btnEditRender = new JButton("Edit");
-        btnEditRender.setBackground(new Color(30, 144, 255)); // Biru
+        btnEditRender.setBackground(ColorPalette.PRIMARY); // Biru
         btnEditRender.setForeground(Color.WHITE);
         
         btnHapusRender = new JButton("Hapus");
-        btnHapusRender.setBackground(new Color(220, 20, 60)); // Merah
+        btnHapusRender.setBackground(ColorPalette.DANGER); // Merah
         btnHapusRender.setForeground(Color.WHITE);
         
         renderPanel.add(btnEditRender);
@@ -42,7 +42,7 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
         editPanel.setOpaque(true);
         
         btnEditAction = new JButton("Edit");
-        btnEditAction.setBackground(new Color(30, 144, 255));
+        btnEditAction.setBackground(ColorPalette.PRIMARY);
         btnEditAction.setForeground(Color.WHITE);
         btnEditAction.addActionListener(e -> {
             fireEditingStopped();
@@ -50,7 +50,7 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
         });
 
         btnHapusAction = new JButton("Hapus");
-        btnHapusAction.setBackground(new Color(220, 20, 60));
+        btnHapusAction.setBackground(ColorPalette.DANGER);
         btnHapusAction.setForeground(Color.WHITE);
         btnHapusAction.addActionListener(e -> {
             fireEditingStopped();
