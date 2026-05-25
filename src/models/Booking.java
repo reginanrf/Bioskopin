@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author regina
  */
 public class Booking {
-      private int idBooking;
+    private int idBooking;
     private Kasir kasir;
     private Schedule schedule;
     private String namaPelanggan;

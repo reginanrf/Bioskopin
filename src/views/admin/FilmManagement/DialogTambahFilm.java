@@ -69,7 +69,6 @@ public class DialogTambahFilm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tambah Data Film");
-        setPreferredSize(new java.awt.Dimension(680, 500));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
 
