@@ -3,17 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package views.admin.ScheduleManagement;
-
 import dao.ScheduleDAO;
-
 import models.Schedule;
-
 import javax.swing.JOptionPane;
 
 public class DeleteSchedule extends javax.swing.JDialog {
-
     private Schedule schedule;
-
     public DeleteSchedule(
             java.awt.Frame parent,
             boolean modal,
@@ -21,9 +16,7 @@ public class DeleteSchedule extends javax.swing.JDialog {
     ) {
 
         super(parent, modal);
-
         initComponents();
-        
         setLocationRelativeTo(null);
         this.schedule = schedule;
         loadData();
@@ -64,11 +57,8 @@ public class DeleteSchedule extends javax.swing.JDialog {
 
         // Disable semua input
         cbFilm.setEnabled(false);
-
         cbStudio.setEnabled(false);
-
         tanggal.setEnabled(false);
-
         cbJam.setEnabled(false);
     }
 

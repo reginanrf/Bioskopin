@@ -19,8 +19,6 @@ import javax.swing.table.DefaultTableModel;
 import utils.ButtonColumn;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
-import views.admin.ScheduleManagement.CreateSchedule;
-import views.admin.ScheduleManagement.UpdateSchedule;
 import com.formdev.flatlaf.FlatLightLaf;
 /**
  *
@@ -58,9 +56,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
                         int row = Integer.parseInt(e.getActionCommand());
-
                         Schedule schedule = listSchedule.get(row);
 
                         UpdateSchedule dialog =
@@ -69,9 +65,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                                         true,
                                         schedule
                                 );
-
                         dialog.setVisible(true);
-
                         loadTable();
                     }
                 },
@@ -80,11 +74,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-
                         int row = Integer.parseInt(e.getActionCommand());
-
                         Schedule schedule = listSchedule.get(row);
-
                         DeleteSchedule dialog =
                                 new DeleteSchedule(
                                         ScheduleManagementFrame.this,
@@ -93,7 +84,6 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                                 );
 
                         dialog.setVisible(true);
-
                         loadTable();
                     }
                 });
