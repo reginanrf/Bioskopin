@@ -3,6 +3,7 @@ package views.kasir;
 import models.BookingSession;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utils.ColorPalette;
 
 /**
  * @author riikq
@@ -17,6 +18,7 @@ public class FnBPurchasePanel extends javax.swing.JPanel {
     initComponents();
     initTable();
     loadMockFnBFromDB();
+    setBackground(ColorPalette.BACKGROUND);
   }
 
   private void initTable() {

@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import utils.ColorPalette;
 
 /**
  * @author riikq
@@ -19,6 +20,7 @@ public class SeatSelectionPanel extends javax.swing.JPanel {
   public SeatSelectionPanel(MainBookingFrame parentFrame) {
     this.parentFrame = parentFrame;
     initComponents();
+    setBackground(ColorPalette.BACKGROUND);
   }
 
   // Called by MainBookingFrame right before showing this panel

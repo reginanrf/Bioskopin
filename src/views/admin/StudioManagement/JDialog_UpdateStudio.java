@@ -44,8 +44,8 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        Field_NamaStudioEdut = new javax.swing.JTextField();
-        Field_TipeStudioEdut = new javax.swing.JComboBox<>();
+        Field_NamaStudioEdit = new javax.swing.JTextField();
+        Field_TipeStudioEdit = new javax.swing.JComboBox<>();
         Btn_BatalSimpanStudioEdit = new javax.swing.JButton();
         Btn_SimpanStudioEdit = new javax.swing.JButton();
         Spinner_BarisStudioEdit = new javax.swing.JSpinner();
@@ -91,10 +91,10 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Jumlah Kolom");
 
-        Field_NamaStudioEdut.addActionListener(this::Field_NamaStudioEdutActionPerformed);
+        Field_NamaStudioEdit.addActionListener(this::Field_NamaStudioEditActionPerformed);
 
-        Field_TipeStudioEdut.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deluxe", "Ultra XD", "IMAX", "Sphere" }));
-        Field_TipeStudioEdut.addActionListener(this::Field_TipeStudioEdutActionPerformed);
+        Field_TipeStudioEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deluxe", "Ultra XD", "IMAX", "Sphere" }));
+        Field_TipeStudioEdit.addActionListener(this::Field_TipeStudioEditActionPerformed);
 
         Btn_BatalSimpanStudioEdit.setText("Batal");
         Btn_BatalSimpanStudioEdit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +114,7 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
 
         Btn_XatauBatal4.setBackground(new java.awt.Color(226, 209, 110));
         Btn_XatauBatal4.setText("X");
+        Btn_XatauBatal4.addActionListener(this::Btn_XatauBatal4ActionPerformed);
 
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("ID");
@@ -125,44 +126,39 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel30))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addGap(188, 188, 188)))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Field_NamaStudioEdut)
-                    .addComponent(Field_TipeStudioEdut, 0, 329, Short.MAX_VALUE)
-                    .addComponent(Spinner_BarisStudioEdit)
-                    .addComponent(Spinner_ViewsStudioEdit)
-                    .addComponent(Field_IDStudioEdit))
-                .addGap(76, 76, 76))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(366, 366, 366)
-                .addComponent(Btn_BatalSimpanStudioEdit)
-                .addGap(36, 36, 36)
-                .addComponent(Btn_SimpanStudioEdit)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(Btn_XatauBatal4)
-                        .addGap(24, 24, 24))))
-            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(282, 282, 282)
                 .addComponent(jLabel25)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Btn_XatauBatal4)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Field_NamaStudioEdit)
+                            .addComponent(Field_TipeStudioEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Spinner_BarisStudioEdit)
+                            .addComponent(Spinner_ViewsStudioEdit)
+                            .addComponent(Field_IDStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(366, 366, 366)
+                            .addComponent(Btn_BatalSimpanStudioEdit)
+                            .addGap(36, 36, 36)
+                            .addComponent(Btn_SimpanStudioEdit))
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGap(206, 206, 206)
+                            .addComponent(jLabel26))))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +167,9 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
                 .addComponent(Btn_XatauBatal4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel26)
-                .addGap(45, 45, 45)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(Field_IDStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,11 +178,11 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Field_TipeStudioEdut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Field_TipeStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel28)))
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel27)
-                        .addComponent(Field_NamaStudioEdut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Field_NamaStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Spinner_BarisStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +191,7 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Spinner_ViewsStudioEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel30))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_SimpanStudioEdit)
                     .addComponent(Btn_BatalSimpanStudioEdit))
@@ -231,30 +227,30 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
 
      public void setDataStudio(int id, String namaLengkap, int baris, int kolom) {
         this.idStudioYangDiedit = id;
-        Field_ID.setText(String.valueOf(id));
-        Spinner_Baris.setValue(baris);
-        Spinner_Kolom.setValue(kolom);
+        Field_IDStudioEdit.setText(String.valueOf(id));
+        Spinner_BarisStudioEdit.setValue(baris);
+        Spinner_ViewsStudioEdit.setValue(kolom);
 
         // Pisahkan nama dan tipe dari format "Studio 1 (IMAX)"
         if (namaLengkap != null && namaLengkap.contains(" (") && namaLengkap.endsWith(")")) {
             int idxBuka  = namaLengkap.lastIndexOf(" (");
             String nama  = namaLengkap.substring(0, idxBuka).trim();
             String tipe  = namaLengkap.substring(idxBuka + 2, namaLengkap.length() - 1).trim();
-            Field_NamaStudio.setText(nama);
-            Field_TipeStudio.setSelectedItem(tipe);
+            Field_NamaStudioEdit.setText(nama);
+            Field_TipeStudioEdit.setSelectedItem(tipe);
         } else {
             // Fallback jika format tidak sesuai
-            Field_NamaStudio.setText(namaLengkap);
+            Field_NamaStudioEdit.setText(namaLengkap);
         }
     }
      
-    private void Field_NamaStudioEdutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_NamaStudioEdutActionPerformed
+    private void Field_NamaStudioEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_NamaStudioEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Field_NamaStudioEdutActionPerformed
+    }//GEN-LAST:event_Field_NamaStudioEditActionPerformed
 
-    private void Field_TipeStudioEdutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_TipeStudioEdutActionPerformed
+    private void Field_TipeStudioEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_TipeStudioEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Field_TipeStudioEdutActionPerformed
+    }//GEN-LAST:event_Field_TipeStudioEditActionPerformed
 
     private void Btn_BatalSimpanStudioEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_BatalSimpanStudioEditMouseClicked
         // TODO add your handling code here:
@@ -279,16 +275,16 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
          return;
         }
          
-        String nama  = Field_NamaStudio.getText().trim();
-        String tipe  = Field_TipeStudio.getSelectedItem().toString();
-        int    baris = (int) Spinner_Baris.getValue();
-        int    kolom = (int) Spinner_Kolom.getValue();
+        String nama  = Field_NamaStudioEdit.getText().trim();
+        String tipe  = Field_TipeStudioEdit.getSelectedItem().toString();
+        int    baris = (int)  Spinner_BarisStudioEdit.getValue();
+        int    kolom = (int) Spinner_ViewsStudioEdit.getValue();
 
         if (nama.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
                 "Nama studio wajib diisi!",
                 "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
-            Field_NamaStudio.requestFocus();
+            Field_NamaStudioEdit.requestFocus();
             return;
         }
 
@@ -313,12 +309,16 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
                 "Gagal memperbarui data. Periksa koneksi database.",
                 "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    }
     }//GEN-LAST:event_Btn_SimpanStudioEditActionPerformed
 
     private void Field_IDStudioEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Field_IDStudioEditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Field_IDStudioEditActionPerformed
+
+    private void Btn_XatauBatal4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_XatauBatal4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_Btn_XatauBatal4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,65 +358,23 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_BatalSimpanStudio;
-    private javax.swing.JButton Btn_BatalSimpanStudio1;
-    private javax.swing.JButton Btn_BatalSimpanStudio2;
     private javax.swing.JButton Btn_BatalSimpanStudioEdit;
-    private javax.swing.JButton Btn_SimpanStudio;
-    private javax.swing.JButton Btn_SimpanStudio1;
-    private javax.swing.JButton Btn_SimpanStudio2;
     private javax.swing.JButton Btn_SimpanStudioEdit;
-    private javax.swing.JButton Btn_XatauBatal;
-    private javax.swing.JButton Btn_XatauBatal1;
-    private javax.swing.JButton Btn_XatauBatal2;
     private javax.swing.JButton Btn_XatauBatal4;
     private javax.swing.JTextField Field_IDStudioEdit;
-    private javax.swing.JTextField Field_NamaStudio;
-    private javax.swing.JTextField Field_NamaStudio1;
-    private javax.swing.JTextField Field_NamaStudio2;
-    private javax.swing.JTextField Field_NamaStudioEdut;
-    private javax.swing.JComboBox<String> Field_TipeStudio;
-    private javax.swing.JComboBox<String> Field_TipeStudio1;
-    private javax.swing.JComboBox<String> Field_TipeStudio2;
-    private javax.swing.JComboBox<String> Field_TipeStudioEdut;
+    private javax.swing.JTextField Field_NamaStudioEdit;
+    private javax.swing.JComboBox<String> Field_TipeStudioEdit;
     private javax.swing.JSpinner Spinner_BarisStudioEdit;
     private javax.swing.JSpinner Spinner_ViewsStudioEdit;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
     // End of variables declaration//GEN-END:variables
 }

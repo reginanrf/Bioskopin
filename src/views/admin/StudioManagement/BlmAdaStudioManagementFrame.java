@@ -22,6 +22,28 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Bioskopin - Kelola Studio");
+        setupSidebarNavigation();
+    }
+    
+    private void setupSidebarNavigation() {
+        // Studio — sudah di halaman ini, tidak perlu navigasi
+        sidebarStudio.setForeground(new java.awt.Color(195, 156, 0)); // highlight aktif
+ 
+        sidebarFilm.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sidebarFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                new views.admin.FilmManagement.FilmManagementFrame().setVisible(true);
+                dispose();
+            }
+        });
+ 
+        sidebarCalendar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sidebarCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                new views.admin.ScheduleManagement.ScheduleManagementFrame().setVisible(true);
+                dispose();
+            }
+        });
     }
 
     /**
@@ -36,13 +58,20 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         JPanel_BG = new javax.swing.JPanel();
-        JPanel_SideBar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Btn_TambahStudio1 = new javax.swing.JButton();
+        sidebarpanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        sidebarDashboard = new javax.swing.JLabel();
+        sidebarFilm = new javax.swing.JLabel();
+        sidebarStudio = new javax.swing.JLabel();
+        sidebarCalendar = new javax.swing.JLabel();
+        sidebarFnB = new javax.swing.JLabel();
+        sidebarReport = new javax.swing.JLabel();
+        sidebarLogout = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -62,82 +91,152 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
             }
         });
 
-        JPanel_SideBar.setBackground(new java.awt.Color(16, 25, 53));
+        JPanel_BG.setBackground(new java.awt.Color(255, 255, 255));
+        JPanel_BG.setPreferredSize(new java.awt.Dimension(1366, 730));
 
-        javax.swing.GroupLayout JPanel_SideBarLayout = new javax.swing.GroupLayout(JPanel_SideBar);
-        JPanel_SideBar.setLayout(JPanel_SideBarLayout);
-        JPanel_SideBarLayout.setHorizontalGroup(
-            JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        JPanel_SideBarLayout.setVerticalGroup(
-            JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Kelola Studio");
 
         jLabel2.setText("Kelola studio yang diinginkan ");
-
-        jLabel6.setText("Icon");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Belum Ada Data Studio");
 
         jLabel8.setText("Saat ini belum ada studio yand tersedia. Silakan tambahkan studio pertama Anda. ");
 
-        Btn_TambahStudio1.setBackground(new java.awt.Color(226, 209, 110));
+        Btn_TambahStudio1.setBackground(new java.awt.Color(195, 156, 0));
+        Btn_TambahStudio1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         Btn_TambahStudio1.setForeground(new java.awt.Color(255, 255, 255));
         Btn_TambahStudio1.setText("+ Tambah Studio");
-        Btn_TambahStudio1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_TambahStudio1MouseClicked(evt);
-            }
-        });
+        Btn_TambahStudio1.setPreferredSize(new java.awt.Dimension(155, 35));
         Btn_TambahStudio1.addActionListener(this::Btn_TambahStudio1ActionPerformed);
+
+        sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
+        sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(140, 76));
+
+        sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
+        sidebarDashboard.setText("  Dashboard");
+
+        sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
+        sidebarFilm.setText("  Film");
+
+        sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
+        sidebarStudio.setText("  Studio");
+
+        sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
+        sidebarCalendar.setText("Schedule");
+
+        sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
+        sidebarFnB.setText("  F&B");
+
+        sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarReport.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/docs.png"))); // NOI18N
+        sidebarReport.setText("Report");
+
+        sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
+        sidebarLogout.setText("  Logout");
+
+        javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
+        sidebarpanel.setLayout(sidebarpanelLayout);
+        sidebarpanelLayout.setHorizontalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sidebarDashboard)
+                            .addComponent(sidebarFilm)
+                            .addComponent(sidebarStudio)
+                            .addComponent(sidebarFnB)
+                            .addComponent(sidebarReport)
+                            .addComponent(sidebarCalendar)
+                            .addComponent(sidebarLogout))))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        sidebarpanelLayout.setVerticalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(sidebarDashboard)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFilm)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarStudio)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarCalendar)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarReport)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addComponent(sidebarLogout)
+                .addGap(40, 40, 40))
+        );
 
         javax.swing.GroupLayout JPanel_BGLayout = new javax.swing.GroupLayout(JPanel_BG);
         JPanel_BG.setLayout(JPanel_BGLayout);
         JPanel_BGLayout.setHorizontalGroup(
             JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanel_BGLayout.createSequentialGroup()
-                .addComponent(JPanel_SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel_BGLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
                         .addGroup(JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel_BGLayout.createSequentialGroup()
+                        .addGap(0, 458, Short.MAX_VALUE)
+                        .addGroup(JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addGroup(JPanel_BGLayout.createSequentialGroup()
                                 .addGap(115, 115, 115)
-                                .addComponent(jLabel7))))
-                    .addGroup(JPanel_BGLayout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(Btn_TambahStudio1))
-                    .addGroup(JPanel_BGLayout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addComponent(jLabel6)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                                .addComponent(jLabel7))
+                            .addGroup(JPanel_BGLayout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(Btn_TambahStudio1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(214, 214, 214))))
         );
         JPanel_BGLayout.setVerticalGroup(
             JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPanel_SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(JPanel_BGLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(98, 98, 98)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(202, 202, 202)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(Btn_TambahStudio1)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addComponent(Btn_TambahStudio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(JPanel_BGLayout.createSequentialGroup()
+                .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -148,7 +247,9 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPanel_BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(JPanel_BG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,10 +285,6 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Btn_TambahStudio1ActionPerformed
 
-    private void Btn_TambahStudio1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_TambahStudio1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Btn_TambahStudio1MouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -216,13 +313,20 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_TambahStudio1;
     private javax.swing.JPanel JPanel_BG;
-    private javax.swing.JPanel JPanel_SideBar;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel sidebarCalendar;
+    private javax.swing.JLabel sidebarDashboard;
+    private javax.swing.JLabel sidebarFilm;
+    private javax.swing.JLabel sidebarFnB;
+    private javax.swing.JLabel sidebarLogout;
+    private javax.swing.JLabel sidebarReport;
+    private javax.swing.JLabel sidebarStudio;
+    private javax.swing.JPanel sidebarpanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,8 @@ package views.kasir;
 import models.BookingSession;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import utils.ColorPalette;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  * @author riikq
@@ -47,6 +49,9 @@ public class MainBookingFrame extends javax.swing.JFrame {
     this.setContentPane(mainContainer);
     this.setSize(900, 700);
     this.setLocationRelativeTo(null);
+    
+    mainContainer.setBackground(ColorPalette.BACKGROUND);
+    getContentPane().setBackground(ColorPalette.BACKGROUND);
   }
 
   public BookingSession getSession() {
@@ -93,10 +98,11 @@ public class MainBookingFrame extends javax.swing.JFrame {
   }
 
   public static void main(String[] args) {
-    try {
-      javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-    } catch (Exception e) {
-    }
+        try {
+            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize FlatLaf");
+        }
 
     java.awt.EventQueue.invokeLater(() -> {
       new MainBookingFrame().setVisible(true);

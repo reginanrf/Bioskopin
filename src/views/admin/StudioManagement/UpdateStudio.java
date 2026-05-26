@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views.admin;
+package views.admin.StudioManagement;
 
 /**
  *
- * @author regina
+ * @author rhy1caa
  */
-public class DashboardAdmin extends javax.swing.JFrame {
+public class UpdateStudio extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardAdmin.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UpdateStudio.class.getName());
 
     /**
-     * Creates new form DashboardAdmin
+     * Creates new form UpdateStudio
      */
-    public DashboardAdmin() {
+    public UpdateStudio() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new DashboardAdmin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new UpdateStudio().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

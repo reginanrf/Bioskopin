@@ -5,11 +5,11 @@
 package views.admin.StudioManagement;
 
 import controllers.StudioController;
-import java.util.logging.Logger;
+
 
 /**
  *
- * @author rhy1caa
+ * @author rhy1caaa
  */
 public class StudioManagementFrame extends javax.swing.JFrame {
     
@@ -24,19 +24,19 @@ public class StudioManagementFrame extends javax.swing.JFrame {
        initComponents();
        setLocationRelativeTo(null);
        setTitle("Bioskopin - Kelola Studio");
+       jTable_ManageStudio = new javax.swing.JTable();
        loadData(); 
     }
     
      private void loadData() {
-        jTable_Studio.setModel(studioController.getTableModel());
-
+        jTable_ManageStudio.setModel(studioController.getTableModel());
         // Atur lebar kolom agar lebih rapi
-        if (jTable_Studio.getColumnModel().getColumnCount() > 0) {
-            jTable_Studio.getColumnModel().getColumn(0).setPreferredWidth(60);   // ID
-            jTable_Studio.getColumnModel().getColumn(1).setPreferredWidth(220);  // Nama
-            jTable_Studio.getColumnModel().getColumn(2).setPreferredWidth(80);   // Baris
-            jTable_Studio.getColumnModel().getColumn(3).setPreferredWidth(80);   // Kolom
-            jTable_Studio.getColumnModel().getColumn(4).setPreferredWidth(80);   // Kapasitas
+        if (jTable_ManageStudio.getColumnModel().getColumnCount() > 0) {
+            jTable_ManageStudio.getColumnModel().getColumn(0).setPreferredWidth(60);   // ID
+            jTable_ManageStudio.getColumnModel().getColumn(1).setPreferredWidth(220);  // Nama
+            jTable_ManageStudio.getColumnModel().getColumn(2).setPreferredWidth(80);   // Baris
+            jTable_ManageStudio.getColumnModel().getColumn(3).setPreferredWidth(80);   // Kolom
+            jTable_ManageStudio.getColumnModel().getColumn(4).setPreferredWidth(80);   // Kapasitas
         }
      }
 
@@ -49,44 +49,165 @@ public class StudioManagementFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Btn_HapusStudio = new javax.swing.JButton();
         JPanel_SideBar = new javax.swing.JPanel();
+        sidebarpanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        sidebarDashboard = new javax.swing.JLabel();
+        sidebarFilm = new javax.swing.JLabel();
+        sidebarStudio = new javax.swing.JLabel();
+        sidebarCalendar = new javax.swing.JLabel();
+        sidebarFnB = new javax.swing.JLabel();
+        sidebarReport = new javax.swing.JLabel();
+        sidebarLogout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        Btn_TambahStudio2 = new javax.swing.JButton();
+        PanelBgTabel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_ManageStudio = new javax.swing.JTable();
-        Btn_TambahStudio2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        Btn_HapusStudio = new javax.swing.JButton();
         Btn_EditStudio3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Btn_HapusStudio.setBackground(new java.awt.Color(226, 209, 110));
-        Btn_HapusStudio.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_HapusStudio.setText("Hapus Data");
-        Btn_HapusStudio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_HapusStudioMouseClicked(evt);
-            }
-        });
-        Btn_HapusStudio.addActionListener(this::Btn_HapusStudioActionPerformed);
+        setPreferredSize(new java.awt.Dimension(1366, 730));
+        setResizable(false);
 
         JPanel_SideBar.setBackground(new java.awt.Color(16, 25, 53));
+
+        sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
+        sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
+
+        jLabel3.setText("jLabel2");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel4.setPreferredSize(new java.awt.Dimension(140, 76));
+
+        sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
+        sidebarDashboard.setText("  Dashboard");
+
+        sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
+        sidebarFilm.setText("  Film");
+
+        sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
+        sidebarStudio.setText("  Studio");
+
+        sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
+        sidebarCalendar.setText("Schedule");
+
+        sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
+        sidebarFnB.setText("  F&B");
+
+        sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarReport.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/docs.png"))); // NOI18N
+        sidebarReport.setText("Report");
+
+        sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
+        sidebarLogout.setText("  Logout");
+
+        javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
+        sidebarpanel.setLayout(sidebarpanelLayout);
+        sidebarpanelLayout.setHorizontalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sidebarDashboard)
+                            .addComponent(sidebarFilm)
+                            .addComponent(sidebarStudio)
+                            .addComponent(sidebarFnB)
+                            .addComponent(sidebarReport)
+                            .addComponent(sidebarCalendar)
+                            .addComponent(sidebarLogout))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        sidebarpanelLayout.setVerticalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel3))
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(sidebarDashboard)
+                        .addGap(18, 18, 18)
+                        .addComponent(sidebarFilm)
+                        .addGap(18, 18, 18)
+                        .addComponent(sidebarStudio)
+                        .addGap(18, 18, 18)
+                        .addComponent(sidebarCalendar)
+                        .addGap(18, 18, 18)
+                        .addComponent(sidebarFnB)
+                        .addGap(18, 18, 18)
+                        .addComponent(sidebarReport)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addComponent(sidebarLogout)
+                .addGap(40, 40, 40))
+        );
 
         javax.swing.GroupLayout JPanel_SideBarLayout = new javax.swing.GroupLayout(JPanel_SideBar);
         JPanel_SideBar.setLayout(JPanel_SideBarLayout);
         JPanel_SideBarLayout.setHorizontalGroup(
             JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
+            .addGroup(JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPanel_SideBarLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         JPanel_SideBarLayout.setVerticalGroup(
             JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 742, Short.MAX_VALUE)
+            .addGroup(JPanel_SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPanel_SideBarLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Kelola Studio");
 
-        jLabel2.setText("Kelola studio yang diinginkan ");
+        jLabel2.setText("Kelola studio yang tersedia ");
+
+        Btn_TambahStudio2.setBackground(new java.awt.Color(195, 156, 0));
+        Btn_TambahStudio2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        Btn_TambahStudio2.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_TambahStudio2.setText("+ Tambah Studio");
+        Btn_TambahStudio2.setPreferredSize(new java.awt.Dimension(155, 35));
+        Btn_TambahStudio2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_TambahStudio2MouseClicked(evt);
+            }
+        });
+        Btn_TambahStudio2.addActionListener(this::Btn_TambahStudio2ActionPerformed);
+
+        PanelBgTabel.setBackground(new java.awt.Color(255, 255, 255));
+        PanelBgTabel.setPreferredSize(new java.awt.Dimension(483, 488));
 
         jTable_ManageStudio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,17 +231,20 @@ public class StudioManagementFrame extends javax.swing.JFrame {
         jTable_ManageStudio.setName(""); // NOI18N
         jScrollPane1.setViewportView(jTable_ManageStudio);
 
-        Btn_TambahStudio2.setBackground(new java.awt.Color(226, 209, 110));
-        Btn_TambahStudio2.setForeground(new java.awt.Color(255, 255, 255));
-        Btn_TambahStudio2.setText("+ Tambah Studio");
-        Btn_TambahStudio2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        jLabel5.setText("Daftar Studio Tersedia");
+
+        Btn_HapusStudio.setBackground(new java.awt.Color(255, 0, 51));
+        Btn_HapusStudio.setForeground(new java.awt.Color(255, 255, 255));
+        Btn_HapusStudio.setText("Hapus Data");
+        Btn_HapusStudio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Btn_TambahStudio2MouseClicked(evt);
+                Btn_HapusStudioMouseClicked(evt);
             }
         });
-        Btn_TambahStudio2.addActionListener(this::Btn_TambahStudio2ActionPerformed);
+        Btn_HapusStudio.addActionListener(this::Btn_HapusStudioActionPerformed);
 
-        Btn_EditStudio3.setBackground(new java.awt.Color(226, 209, 110));
+        Btn_EditStudio3.setBackground(new java.awt.Color(195, 156, 0));
         Btn_EditStudio3.setForeground(new java.awt.Color(255, 255, 255));
         Btn_EditStudio3.setText("Edit Data");
         Btn_EditStudio3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,46 +254,76 @@ public class StudioManagementFrame extends javax.swing.JFrame {
         });
         Btn_EditStudio3.addActionListener(this::Btn_EditStudio3ActionPerformed);
 
+        javax.swing.GroupLayout PanelBgTabelLayout = new javax.swing.GroupLayout(PanelBgTabel);
+        PanelBgTabel.setLayout(PanelBgTabelLayout);
+        PanelBgTabelLayout.setHorizontalGroup(
+            PanelBgTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelBgTabelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(PanelBgTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelBgTabelLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelBgTabelLayout.createSequentialGroup()
+                        .addGroup(PanelBgTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 939, Short.MAX_VALUE)
+                            .addGroup(PanelBgTabelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(PanelBgTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Btn_EditStudio3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Btn_HapusStudio))))
+                        .addGap(66, 66, 66))))
+        );
+        PanelBgTabelLayout.setVerticalGroup(
+            PanelBgTabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelBgTabelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel5)
+                .addGap(14, 14, 14)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Btn_HapusStudio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Btn_EditStudio3)
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JPanel_SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(PanelBgTabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Btn_TambahStudio2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Btn_HapusStudio)
-                                .addGap(17, 17, 17)
-                                .addComponent(Btn_EditStudio3)))))
-                .addContainerGap(101, Short.MAX_VALUE))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Btn_TambahStudio2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Btn_EditStudio3)
-                    .addComponent(Btn_HapusStudio))
-                .addGap(18, 18, 18)
-                .addComponent(Btn_TambahStudio2)
-                .addGap(41, 41, 41))
-            .addComponent(JPanel_SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Btn_TambahStudio2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)))
+                .addComponent(PanelBgTabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(JPanel_SideBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,7 +331,7 @@ public class StudioManagementFrame extends javax.swing.JFrame {
 
     private void Btn_HapusStudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_HapusStudioActionPerformed
         // TODO add your handling code here:
-        int barisTerpilih = jTable_Studio.getSelectedRow();
+        int barisTerpilih = jTable_ManageStudio.getSelectedRow();
 
         if (barisTerpilih == -1) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -189,8 +343,8 @@ public class StudioManagementFrame extends javax.swing.JFrame {
             return;
         }
 
-        int    id   = (int)    jTable_Studio.getValueAt(barisTerpilih, 0);
-        String nama = (String) jTable_Studio.getValueAt(barisTerpilih, 1);
+        int    id   = (int)    jTable_ManageStudio.getValueAt(barisTerpilih, 0);
+        String nama = (String) jTable_ManageStudio.getValueAt(barisTerpilih, 1);
 
         // Minta konfirmasi sebelum menghapus
         int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(
@@ -231,11 +385,16 @@ public class StudioManagementFrame extends javax.swing.JFrame {
 
     private void Btn_TambahStudio2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_TambahStudio2ActionPerformed
         // TODO add your handling code here:
+        JDialog_Create dialog = new JDialog_Create(null, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        loadData();
+
     }//GEN-LAST:event_Btn_TambahStudio2ActionPerformed
 
     private void Btn_EditStudio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EditStudio3ActionPerformed
         // TODO add your handling code here:
-        int barisTerpilih = jTable_Studio.getSelectedRow();
+        int barisTerpilih = jTable_ManageStudio.getSelectedRow();
 
         if (barisTerpilih == -1) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -248,13 +407,13 @@ public class StudioManagementFrame extends javax.swing.JFrame {
         }
 
         // Ambil data dari baris terpilih di tabel
-        int    id   = (int)    jTable_Studio.getValueAt(barisTerpilih, 0);
-        String nama = (String) jTable_Studio.getValueAt(barisTerpilih, 1);
-        int    baris = (int)   jTable_Studio.getValueAt(barisTerpilih, 2);
-        int    kolom = (int)   jTable_Studio.getValueAt(barisTerpilih, 3);
+        int    id   = (int)    jTable_ManageStudio.getValueAt(barisTerpilih, 0);
+        String nama = (String) jTable_ManageStudio.getValueAt(barisTerpilih, 1);
+        int    baris = (int)   jTable_ManageStudio.getValueAt(barisTerpilih, 2);
+        int    kolom = (int)   jTable_ManageStudio.getValueAt(barisTerpilih, 3);
 
         // Buka dialog edit dan isi dengan data studio yang dipilih
-        JDialog_EditStudio dialog = new JDialog_EditStudio(null, true);
+        JDialog_UpdateStudio dialog = new JDialog_UpdateStudio(null, true);
         dialog.setDataStudio(id, nama, baris, kolom);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
@@ -304,9 +463,21 @@ public class StudioManagementFrame extends javax.swing.JFrame {
     private javax.swing.JButton Btn_HapusStudio;
     private javax.swing.JButton Btn_TambahStudio2;
     private javax.swing.JPanel JPanel_SideBar;
+    private javax.swing.JPanel PanelBgTabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_ManageStudio;
+    private javax.swing.JLabel sidebarCalendar;
+    private javax.swing.JLabel sidebarDashboard;
+    private javax.swing.JLabel sidebarFilm;
+    private javax.swing.JLabel sidebarFnB;
+    private javax.swing.JLabel sidebarLogout;
+    private javax.swing.JLabel sidebarReport;
+    private javax.swing.JLabel sidebarStudio;
+    private javax.swing.JPanel sidebarpanel;
     // End of variables declaration//GEN-END:variables
 }

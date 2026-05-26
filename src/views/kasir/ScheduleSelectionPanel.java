@@ -3,6 +3,7 @@ package views.kasir;
 import models.BookingSession;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utils.ColorPalette;
 
 /**
  * @author riikq
@@ -16,6 +17,7 @@ public class ScheduleSelectionPanel extends javax.swing.JPanel {
     this.parentFrame = parentFrame;
     initComponents();
     initTable();
+    setBackground(ColorPalette.BACKGROUND);
   }
 
   private void initTable() {

@@ -4,6 +4,7 @@
  */
 package views.admin.StudioManagement;
 import java.util.logging.Logger;
+import controllers.StudioController;
 
 /**
  *
@@ -11,12 +12,14 @@ import java.util.logging.Logger;
  */
 public class JDialog_Create extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JDialog_Create.class.getName());
+    private static final Logger logger = Logger.getLogger(JDialog_Create.class.getName());
     
     private final StudioController studioController;
     
     /**
      * Creates new form JDialog_Create
+     * @param parent
+     * @param modal
      */
     public JDialog_Create(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -109,8 +112,9 @@ public class JDialog_Create extends javax.swing.JDialog {
         });
         Btn_SimpanStudio.addActionListener(this::Btn_SimpanStudioActionPerformed);
 
-        Btn_XatauBatal.setBackground(new java.awt.Color(226, 209, 110));
+        Btn_XatauBatal.setBackground(new java.awt.Color(195, 156, 0));
         Btn_XatauBatal.setText("X");
+        Btn_XatauBatal.addActionListener(this::Btn_XatauBatalActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,45 +122,41 @@ public class JDialog_Create extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(190, 190, 190))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(Btn_XatauBatal)
-                        .addGap(24, 24, 24))))
+                .addComponent(Btn_XatauBatal)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(244, 244, 244)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGap(303, 303, 303)
-                            .addComponent(Btn_BatalSimpanStudio)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(Btn_SimpanStudio)
-                            .addGap(93, 93, 93))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(119, 119, 119)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5))
-                                    .addGap(34, 34, 34))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(29, 29, 29)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Spinner_KolomStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(Btn_BatalSimpanStudio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Btn_SimpanStudio))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(Field_NamaStudio)
-                                        .addComponent(Field_TipeStudio, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(Spinner_BarisStudio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 132, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(34, 34, 34))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(29, 29, 29)))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Spinner_KolomStudio)
+                                    .addComponent(Spinner_BarisStudio)
+                                    .addComponent(Field_TipeStudio, 0, 340, Short.MAX_VALUE)
+                                    .addComponent(Field_NamaStudio)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel2)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +165,9 @@ public class JDialog_Create extends javax.swing.JDialog {
                 .addComponent(Btn_XatauBatal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(48, 48, 48)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -185,11 +185,11 @@ public class JDialog_Create extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Spinner_KolomStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Btn_SimpanStudio)
                     .addComponent(Btn_BatalSimpanStudio))
-                .addGap(102, 102, 102))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -231,10 +231,9 @@ public class JDialog_Create extends javax.swing.JDialog {
         // TODO add your handling code here:
         String nama = Field_NamaStudio.getText().trim();
         String tipe = Field_TipeStudio.getSelectedItem().toString();
-        int baris = (int) Spinner_Baris.getValue();
-        int kolom = (int) Spinner_Kolom.getValue();
+        int baris = (int) Spinner_BarisStudio.getValue();
+        int kolom = (int) Spinner_KolomStudio.getValue();
 
-        // 2. Validasi agar user tidak mengosongkan teks
         if (nama.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
                 this,
@@ -275,7 +274,13 @@ public class JDialog_Create extends javax.swing.JDialog {
                 "Error",
                 javax.swing.JOptionPane.ERROR_MESSAGE
             );
+        }
     }//GEN-LAST:event_Btn_SimpanStudioActionPerformed
+
+    private void Btn_XatauBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_XatauBatalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_Btn_XatauBatalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,18 +304,15 @@ public class JDialog_Create extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JDialog_Create dialog = new JDialog_Create(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            JDialog_Create dialog = new JDialog_Create(new javax.swing.JFrame(), true);
+            dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+            dialog.setVisible(true);
         });
     }
 

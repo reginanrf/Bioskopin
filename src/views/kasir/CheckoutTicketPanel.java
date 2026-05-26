@@ -2,6 +2,7 @@ package views.kasir;
 
 import models.BookingSession;
 import javax.swing.JOptionPane;
+import utils.ColorPalette;
 
 /**
  * @author riikq
@@ -13,6 +14,7 @@ public class CheckoutTicketPanel extends javax.swing.JPanel {
   public CheckoutTicketPanel(MainBookingFrame parentFrame) {
     this.parentFrame = parentFrame;
     initComponents();
+    setBackground(ColorPalette.BACKGROUND);
   }
 
   // Called by MainFrame right before this panel is shown
@@ -78,7 +80,7 @@ public class CheckoutTicketPanel extends javax.swing.JPanel {
 
     btnConfirm.setBackground(new java.awt.Color(0, 153, 51));
     btnConfirm.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-    btnConfirm.setForeground(new java.awt.Color(255, 255, 255));
+    btnConfirm.setForeground(new java.awt.Color(255,255,255));
     btnConfirm.setText("Selesaikan & Cetak Tiket");
     btnConfirm.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +89,7 @@ public class CheckoutTicketPanel extends javax.swing.JPanel {
     });
 
     btnCancel.setBackground(new java.awt.Color(204, 0, 0));
-    btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+    btnCancel.setForeground(new java.awt.Color(255,255,255));
     btnCancel.setText("Batalkan Transaksi");
     btnCancel.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
