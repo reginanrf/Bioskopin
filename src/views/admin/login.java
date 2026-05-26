@@ -5,6 +5,7 @@
 package views.admin;
 
 import views.admin.tampilDataPegawai;
+import views.kasir.MainBookingFrame;
 
 /**
  *
@@ -42,7 +43,6 @@ public class login extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +89,7 @@ public class login extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(15, 15, 15)
                                 .addComponent(jLabel2)))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +127,6 @@ public class login extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 51));
         jLabel10.setText("Password");
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel11.setText("Lupa Password?");
-
         btnLogin.setBackground(new java.awt.Color(0, 0, 102));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,7 +151,6 @@ public class login extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel11)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,9 +177,7 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(2, 2, 2)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
-                .addGap(12, 12, 12)
+                .addGap(40, 40, 40)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
@@ -260,7 +253,7 @@ public class login extends javax.swing.JFrame {
                     adminDashboard adminDashboard = new adminDashboard();
                     adminDashboard.setVisible(true);
                 } else if (roleUser.equals("Kasir")) {
-                    tampilDataPegawai kasirDashboard = new tampilDataPegawai();
+                    MainBookingFrame kasirDashboard = new MainBookingFrame();
                     kasirDashboard.setVisible(true);
                 } else {
                     javax.swing.JOptionPane.showMessageDialog(this, "Role tidak dikenali oleh sistem!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -321,7 +314,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

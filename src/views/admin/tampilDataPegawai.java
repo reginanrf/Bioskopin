@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 
@@ -79,6 +80,7 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         sidebarCalendar = new javax.swing.JLabel();
         sidebarReport = new javax.swing.JLabel();
         sidebarLogout = new javax.swing.JLabel();
+        sidebarCalendar1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 153));
@@ -243,7 +245,7 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarReport.setForeground(new java.awt.Color(204, 153, 0));
         sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
-        sidebarReport.setText("  Employee");
+        sidebarReport.setText("Pegawai");
 
         sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
@@ -252,6 +254,16 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sidebarLogoutMouseClicked(evt);
+            }
+        });
+
+        sidebarCalendar1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarCalendar1.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarCalendar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
+        sidebarCalendar1.setText("  F&B");
+        sidebarCalendar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarCalendar1MouseClicked(evt);
             }
         });
 
@@ -271,7 +283,8 @@ public class tampilDataPegawai extends javax.swing.JFrame {
                             .addComponent(sidebarStudio)
                             .addComponent(sidebarReport)
                             .addComponent(sidebarCalendar)
-                            .addComponent(sidebarLogout))))
+                            .addComponent(sidebarLogout)
+                            .addComponent(sidebarCalendar1))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
@@ -288,8 +301,10 @@ public class tampilDataPegawai extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(sidebarCalendar)
                 .addGap(18, 18, 18)
+                .addComponent(sidebarCalendar1)
+                .addGap(18, 18, 18)
                 .addComponent(sidebarReport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(57, 57, 57))
         );
@@ -454,6 +469,28 @@ public class tampilDataPegawai extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_sidebarLogoutMouseClicked
 
+    private void sidebarCalendar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarCalendar1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        JFrame frame = new JFrame("Bioskopin Ticketing System - Preview Mode");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      // 2. Instantiate your View panel (No import needed since it's in views.kasir)
+      FnBManagementPanel seatView = new FnBManagementPanel();
+
+      // 3. Mount the panel into the frame window
+      frame.add(seatView);
+
+      // 4. Let the window wrap perfectly around the panel's preferred bounds
+      frame.pack();
+
+      // 5. Center the window on the screen after packing
+      frame.setLocationRelativeTo(null);
+
+      // 6. Make the window visible
+      frame.setVisible(true);
+    }//GEN-LAST:event_sidebarCalendar1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -503,6 +540,7 @@ public class tampilDataPegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel sidebarCalendar;
+    private javax.swing.JLabel sidebarCalendar1;
     private javax.swing.JLabel sidebarDashboard;
     private javax.swing.JLabel sidebarFilm;
     private javax.swing.JLabel sidebarLogout;

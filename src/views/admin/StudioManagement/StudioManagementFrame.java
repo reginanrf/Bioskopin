@@ -5,6 +5,7 @@
 package views.admin.StudioManagement;
 
 import controllers.StudioController;
+import javax.swing.JFrame;
 import views.admin.FilmManagement.FilmManagementFrame;
 import views.admin.FnBManagementPanel;
 import views.admin.ScheduleManagement.ScheduleManagementFrame;
@@ -137,7 +138,7 @@ public class StudioManagementFrame extends javax.swing.JFrame {
         sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarReport.setForeground(new java.awt.Color(239, 239, 239));
         sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
-        sidebarReport.setText("  Employee");
+        sidebarReport.setText("Pegawai");
         sidebarReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sidebarReportMouseClicked(evt);
@@ -489,7 +490,23 @@ public class StudioManagementFrame extends javax.swing.JFrame {
     private void sidebarFnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnBMouseClicked
         // TODO add your handling code here:
         this.dispose();
-        new FnBManagementPanel().setVisible(true);
+        JFrame frame = new JFrame("Bioskopin Ticketing System - Preview Mode");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      // 2. Instantiate your View panel (No import needed since it's in views.kasir)
+      FnBManagementPanel seatView = new FnBManagementPanel();
+
+      // 3. Mount the panel into the frame window
+      frame.add(seatView);
+
+      // 4. Let the window wrap perfectly around the panel's preferred bounds
+      frame.pack();
+
+      // 5. Center the window on the screen after packing
+      frame.setLocationRelativeTo(null);
+
+      // 6. Make the window visible
+      frame.setVisible(true);
     }//GEN-LAST:event_sidebarFnBMouseClicked
 
     private void sidebarReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarReportMouseClicked

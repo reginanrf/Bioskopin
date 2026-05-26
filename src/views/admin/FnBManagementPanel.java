@@ -4,12 +4,21 @@
  */
 package views.admin;
 
-import javax.swing.JOptionPane;
 import controllers.FnBController;
+import javax.swing.JOptionPane;
 import models.FnBItem;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import utils.ColorPalette;
+
+import views.admin.FilmManagement.FilmManagementFrame;
+import views.admin.FnBManagementPanel;
+import views.admin.ScheduleManagement.ScheduleManagementFrame;
+import views.admin.StudioManagement.StudioManagementFrame;
+import views.admin.adminDashboard;
+import views.admin.login;
+import views.admin.tampilDataPegawai;
 
 /**
  *
@@ -23,6 +32,10 @@ public class FnBManagementPanel extends javax.swing.JPanel {
      */
     public FnBManagementPanel() {
         initComponents();
+        btnCreate.setBackground(ColorPalette.PRIMARY);
+        btnUpdate.setBackground(ColorPalette.PRIMARY);
+        btnDelete.setBackground(ColorPalette.DANGER);
+        btnClear.setBackground(ColorPalette.PRIMARY);
         // Setup our MVC controller and table mapping
         this.controller = new FnBController();
         initTableConfiguration();
@@ -73,6 +86,17 @@ public class FnBManagementPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        sidebarpanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        sidebarDashboard = new javax.swing.JLabel();
+        sidebarFilm = new javax.swing.JLabel();
+        sidebarStudio = new javax.swing.JLabel();
+        sidebarCalendar = new javax.swing.JLabel();
+        sidebarFnB = new javax.swing.JLabel();
+        sidebarLogout = new javax.swing.JLabel();
+        sidebarFnB1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanelForm = new javax.swing.JPanel();
@@ -89,6 +113,141 @@ public class FnBManagementPanel extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(1366, 730));
+
+        sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
+        sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
+        jLabel5.setPreferredSize(new java.awt.Dimension(140, 76));
+
+        sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
+        sidebarDashboard.setText("  Dashboard");
+        sidebarDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarDashboardMouseClicked(evt);
+            }
+        });
+
+        sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
+        sidebarFilm.setText("  Film");
+        sidebarFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFilmMouseClicked(evt);
+            }
+        });
+
+        sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
+        sidebarStudio.setText("  Studio");
+        sidebarStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarStudioMouseClicked(evt);
+            }
+        });
+
+        sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
+        sidebarCalendar.setText("  Jadwal");
+        sidebarCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarCalendarMouseClicked(evt);
+            }
+        });
+
+        sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB.setForeground(new java.awt.Color(204, 153, 0));
+        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
+        sidebarFnB.setText("  F&B");
+        sidebarFnB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFnBMouseClicked(evt);
+            }
+        });
+
+        sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
+        sidebarLogout.setText("  Logout");
+        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarLogoutMouseClicked(evt);
+            }
+        });
+
+        sidebarFnB1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB1.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFnB1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
+        sidebarFnB1.setText("Pegawai");
+        sidebarFnB1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFnB1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
+        sidebarpanel.setLayout(sidebarpanelLayout);
+        sidebarpanelLayout.setHorizontalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sidebarDashboard)
+                            .addComponent(sidebarFilm)
+                            .addComponent(sidebarStudio)
+                            .addComponent(sidebarFnB)
+                            .addComponent(sidebarCalendar)
+                            .addComponent(sidebarLogout)
+                            .addComponent(sidebarFnB1))))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        sidebarpanelLayout.setVerticalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(sidebarDashboard)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFilm)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarStudio)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarCalendar)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                .addComponent(sidebarLogout)
+                .addGap(40, 40, 40))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(1126, 430));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,43 +320,77 @@ public class FnBManagementPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanelActions.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnCreate.setBackground(new java.awt.Color(204, 153, 0));
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setText("Tambah");
         btnCreate.addActionListener(this::btnCreateActionPerformed);
         jPanelActions.add(btnCreate);
 
+        btnUpdate.setBackground(new java.awt.Color(204, 153, 0));
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Ubah");
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
         jPanelActions.add(btnUpdate);
 
+        btnDelete.setBackground(new java.awt.Color(255, 0, 51));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Hapus");
         btnDelete.addActionListener(this::btnDeleteActionPerformed);
         jPanelActions.add(btnDelete);
 
+        btnClear.setBackground(new java.awt.Color(204, 153, 0));
+        btnClear.setForeground(new java.awt.Color(255, 255, 255));
         btnClear.setText("Clear");
         btnClear.addActionListener(this::btnClearActionPerformed);
         jPanelActions.add(btnClear);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1114, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                    .addComponent(jPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1114, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -245,6 +438,31 @@ public class FnBManagementPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        String nama = txtNama.getText().trim();
+        String kategori = cbKategori.getSelectedItem().toString();
+        String hargaStr = txtHarga.getText().trim();
+        String stokStr = txtStok.getText().trim();
+        
+        if (nama.isEmpty() || hargaStr.isEmpty() || stokStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua input field wajib diisi!");
+            return; 
+        }
+
+        try {
+            double harga = Double.parseDouble(hargaStr);
+            int stok = Integer.parseInt(stokStr);
+
+            if (controller.store(nama, kategori, harga, stok)) {
+                JOptionPane.showMessageDialog(this, "Menu FnB baru berhasil ditambahkan!");
+                refreshTableData();
+                clearForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal Menyimpan data ke database");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Format harga atau stok harus berupa angka valid!");
+        }
+
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -278,6 +496,81 @@ public class FnBManagementPanel extends javax.swing.JPanel {
         clearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void sidebarDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarDashboardMouseClicked
+        // TODO add your handling code here:
+        javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (frameInduk != null) {
+            frameInduk.dispose();
+        }
+        new adminDashboard().setVisible(true);
+    }//GEN-LAST:event_sidebarDashboardMouseClicked
+
+    private void sidebarFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFilmMouseClicked
+        // TODO add your handling code here:
+        javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (frameInduk != null) {
+            frameInduk.dispose();
+        }
+        new FilmManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarFilmMouseClicked
+
+    private void sidebarStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarStudioMouseClicked
+        // TODO add your handling code here:
+        javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (frameInduk != null) {
+            frameInduk.dispose();
+        }
+        new StudioManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarStudioMouseClicked
+
+    private void sidebarFnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnBMouseClicked
+        // TODO add your handling code here:
+        refreshTableData();
+        clearForm();
+    }//GEN-LAST:event_sidebarFnBMouseClicked
+
+    private void sidebarLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarLogoutMouseClicked
+        // TODO add your handling code here:
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null,
+        "Apakah Anda yakin ingin keluar (Logout)?",
+        "Konfirmasi Logout",
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.QUESTION_MESSAGE);
+
+        if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+            // Bersihkan data Session menggunakan fungsi clear() 
+            utils.Session.clear();
+
+            // Buka kembali halaman Login
+            login loginPage = new login();
+            loginPage.setVisible(true);
+
+            // Cari Frame utama lalu tutup aman
+            javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+            if (frameInduk != null) {
+                frameInduk.dispose();
+            }
+        }
+    }//GEN-LAST:event_sidebarLogoutMouseClicked
+
+    private void sidebarFnB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnB1MouseClicked
+        // TODO add your handling code here:
+        javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+    if (frameInduk != null) {
+        frameInduk.dispose();
+    }
+    new tampilDataPegawai().setVisible(true);
+    }//GEN-LAST:event_sidebarFnB1MouseClicked
+
+    private void sidebarCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarCalendarMouseClicked
+        // TODO add your handling code here:
+        javax.swing.JFrame frameInduk = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (frameInduk != null) {
+            frameInduk.dispose();
+        }
+        new ScheduleManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarCalendarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
@@ -289,12 +582,24 @@ public class FnBManagementPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelActions;
     private javax.swing.JPanel jPanelForm;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel sidebarCalendar;
+    private javax.swing.JLabel sidebarDashboard;
+    private javax.swing.JLabel sidebarFilm;
+    private javax.swing.JLabel sidebarFnB;
+    private javax.swing.JLabel sidebarFnB1;
+    private javax.swing.JLabel sidebarLogout;
+    private javax.swing.JLabel sidebarStudio;
+    private javax.swing.JPanel sidebarpanel;
     private javax.swing.JTable table;
     private javax.swing.JTextField txtHarga;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtStok;
     // End of variables declaration//GEN-END:variables
+
 }
