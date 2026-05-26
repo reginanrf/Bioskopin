@@ -20,6 +20,15 @@ import utils.ButtonColumn;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import com.formdev.flatlaf.FlatLightLaf;
+
+import views.admin.FilmManagement.FilmManagementFrame;
+import views.admin.ScheduleManagement.ScheduleManagementFrame;
+import views.admin.StudioManagement.StudioManagementFrame;
+import views.admin.FnBManagementPanel;
+import views.admin.adminDashboard;
+import views.admin.login;
+import views.admin.tampilDataPegawai;
+
 /**
  *
  * @author regina
@@ -213,6 +222,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarCalendar = new javax.swing.JLabel();
         sidebarFnB = new javax.swing.JLabel();
         sidebarLogout = new javax.swing.JLabel();
+        sidebarFnB1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         maincontentpanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -267,16 +277,31 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
         sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
         sidebarDashboard.setText("  Dashboard");
+        sidebarDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarDashboardMouseClicked(evt);
+            }
+        });
 
         sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
         sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
         sidebarFilm.setText("  Film");
+        sidebarFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFilmMouseClicked(evt);
+            }
+        });
 
         sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
         sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
         sidebarStudio.setText("  Studio");
+        sidebarStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarStudioMouseClicked(evt);
+            }
+        });
 
         sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarCalendar.setForeground(new java.awt.Color(195, 156, 0));
@@ -287,11 +312,31 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
         sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
         sidebarFnB.setText("  F&B");
+        sidebarFnB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFnBMouseClicked(evt);
+            }
+        });
 
         sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
         sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
         sidebarLogout.setText("  Logout");
+        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarLogoutMouseClicked(evt);
+            }
+        });
+
+        sidebarFnB1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB1.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFnB1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
+        sidebarFnB1.setText("  Employee");
+        sidebarFnB1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFnB1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
         sidebarpanel.setLayout(sidebarpanelLayout);
@@ -309,7 +354,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                             .addComponent(sidebarStudio)
                             .addComponent(sidebarFnB)
                             .addComponent(sidebarCalendar)
-                            .addComponent(sidebarLogout))))
+                            .addComponent(sidebarLogout)
+                            .addComponent(sidebarFnB1))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
@@ -327,7 +373,9 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                 .addComponent(sidebarCalendar)
                 .addGap(18, 18, 18)
                 .addComponent(sidebarFnB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(40, 40, 40))
         );
@@ -591,6 +639,60 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         tfCariFilm.setText("");
     }//GEN-LAST:event_tfCariFilmMouseClicked
 
+    private void sidebarDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarDashboardMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new adminDashboard().setVisible(true);
+    }//GEN-LAST:event_sidebarDashboardMouseClicked
+
+    private void sidebarFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFilmMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new FilmManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarFilmMouseClicked
+
+    private void sidebarStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarStudioMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new StudioManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarStudioMouseClicked
+
+    private void sidebarFnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnBMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new FnBManagementPanel().setVisible(true);
+    }//GEN-LAST:event_sidebarFnBMouseClicked
+
+    private void sidebarFnB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnB1MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new tampilDataPegawai().setVisible(true);
+    }//GEN-LAST:event_sidebarFnB1MouseClicked
+
+    private void sidebarLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarLogoutMouseClicked
+        // TODO add your handling code here:
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null, 
+                        "Apakah Anda yakin ingin keluar (Logout)?", 
+                        "Konfirmasi Logout", 
+                        javax.swing.JOptionPane.YES_NO_OPTION, 
+                        javax.swing.JOptionPane.QUESTION_MESSAGE);
+                
+                if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+                    
+                    // Bersihkan Session
+                    utils.Session.id_user = 0;
+                    utils.Session.nama = null;
+                    utils.Session.email = null;
+                    utils.Session.role = null;
+                    
+                    // Buka Login & Tutup Dashboard
+                    login loginPage = new login(); 
+                    loginPage.setVisible(true);
+                    
+                    dispose();
+                }
+    }//GEN-LAST:event_sidebarLogoutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -629,6 +731,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel sidebarDashboard;
     private javax.swing.JLabel sidebarFilm;
     private javax.swing.JLabel sidebarFnB;
+    private javax.swing.JLabel sidebarFnB1;
     private javax.swing.JLabel sidebarLogout;
     private javax.swing.JLabel sidebarStudio;
     private javax.swing.JPanel sidebarpanel;

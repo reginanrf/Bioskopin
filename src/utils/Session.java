@@ -4,13 +4,17 @@
  */
 package utils;
 
-/**
- *
- * @author regina
- */
 public class Session {
     public static int id_user;
     public static String nama;
     public static String email;
     public static String role;
+
+    // Tambahkan metode ini untuk membersihkan session saat logout
+    public static void clear() {
+        id_user = 0;
+        nama = null;
+        email = null;
+        role = null;
+    }
 }

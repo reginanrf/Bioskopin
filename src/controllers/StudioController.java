@@ -40,16 +40,17 @@ public class StudioController {
             }
         };
 
-        ArrayList<Studio> list = studioDAO.getAllStudios();
-        for (Studio s : list) {
-            Object[] row = {
+        ArrayList<Studio> listStudio = studioDAO.getAllStudios();
+       for (Studio s : listStudio) {
+            int kapasitas = s.getJumlahBaris() * s.getJumlahKolom(); // Menghitung kapasitas otomatis
+            Object[] rowData = {
                 s.getIdStudio(),
                 s.getNamaStudio(),
                 s.getJumlahBaris(),
                 s.getJumlahKolom(),
-                s.getKapasitas()   // Dihitung otomatis dari model: baris × kolom
+                kapasitas
             };
-            model.addRow(row);
+            model.addRow(rowData);
         }
         return model;
     }

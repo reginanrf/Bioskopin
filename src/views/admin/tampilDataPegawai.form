@@ -245,11 +245,9 @@
                               <Component id="sidebarDashboard" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="sidebarFilm" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="sidebarStudio" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="sidebarFnB" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="sidebarReport" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="sidebarCalendar" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="sidebarLogout" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="sidebarReport1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -271,12 +269,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sidebarCalendar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="sidebarFnB" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="sidebarReport" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="sidebarReport1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="236" max="32767" attributes="0"/>
+                  <EmptySpace pref="318" max="32767" attributes="0"/>
                   <Component id="sidebarLogout" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
@@ -287,7 +281,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/logo_bioskopin (180 x 116 piksel).png"/>
+              <Image iconType="3" name="/assets/logo_bioskopin.png"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[140, 76]"/>
@@ -303,10 +297,13 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/home.png"/>
+              <Image iconType="3" name="/assets/home.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Dashboard"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sidebarDashboardMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="sidebarFilm">
           <Properties>
@@ -317,10 +314,13 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/studio-1.png"/>
+              <Image iconType="3" name="/assets/studio-1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Film"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sidebarFilmMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="sidebarStudio">
           <Properties>
@@ -331,10 +331,13 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/studio.png"/>
+              <Image iconType="3" name="/assets/studio.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Studio"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sidebarStudioMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="sidebarCalendar">
           <Properties>
@@ -345,24 +348,13 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/calendar.png"/>
+              <Image iconType="3" name="/assets/calendar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Schedule"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="sidebarFnB">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ef" green="ef" red="ef" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/food.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="  F&amp;B"/>
-          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sidebarCalendarMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="sidebarReport">
           <Properties>
@@ -373,9 +365,9 @@
               <Color blue="0" green="99" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/icons8-users-20 (1).png"/>
+              <Image iconType="3" name="/assets/person.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="   Employee"/>
+            <Property name="text" type="java.lang.String" value="  Employee"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="sidebarLogout">
@@ -387,24 +379,13 @@
               <Color blue="ef" green="ef" red="ef" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/logout.png"/>
+              <Image iconType="3" name="/assets/logout.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="  Logout"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="sidebarReport1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI Semibold" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ef" green="ef" red="ef" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uas/docs.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="  Report"/>
-          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sidebarLogoutMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

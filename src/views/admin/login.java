@@ -4,7 +4,7 @@
  */
 package views.admin;
 
-import views.admin.;
+import views.admin.tampilDataPegawai;
 
 /**
  *
@@ -49,7 +49,7 @@ public class login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(16, 25, 53));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logo_bioskopin_gede.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin_gede.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +109,7 @@ public class login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logo_bioskopin_gede_dark4.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin_gede_dark4.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
@@ -186,7 +186,7 @@ public class login extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(12, 12, 12)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -257,7 +257,7 @@ public class login extends javax.swing.JFrame {
                 roleUser = utils.Session.role;
                 
                 if (roleUser.equals("Admin")) {
-                    adminDashboard adminDashboard = new   adminDashboard();
+                    adminDashboard adminDashboard = new adminDashboard();
                     adminDashboard.setVisible(true);
                 } else if (roleUser.equals("Kasir")) {
                     tampilDataPegawai kasirDashboard = new tampilDataPegawai();

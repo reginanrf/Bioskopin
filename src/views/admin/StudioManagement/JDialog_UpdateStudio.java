@@ -50,7 +50,6 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         Btn_SimpanStudioEdit = new javax.swing.JButton();
         Spinner_BarisStudioEdit = new javax.swing.JSpinner();
         Spinner_ViewsStudioEdit = new javax.swing.JSpinner();
-        Btn_XatauBatal4 = new javax.swing.JButton();
         jLabel31 = new javax.swing.JLabel();
         Field_IDStudioEdit = new javax.swing.JTextField();
 
@@ -112,10 +111,6 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         });
         Btn_SimpanStudioEdit.addActionListener(this::Btn_SimpanStudioEditActionPerformed);
 
-        Btn_XatauBatal4.setBackground(new java.awt.Color(226, 209, 110));
-        Btn_XatauBatal4.setText("X");
-        Btn_XatauBatal4.addActionListener(this::Btn_XatauBatal4ActionPerformed);
-
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("ID");
 
@@ -129,10 +124,6 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
                 .addGap(282, 282, 282)
                 .addComponent(jLabel25)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Btn_XatauBatal4)
-                .addGap(24, 24, 24))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -163,9 +154,7 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(Btn_XatauBatal4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel26)
@@ -315,11 +304,6 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_Field_IDStudioEditActionPerformed
 
-    private void Btn_XatauBatal4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_XatauBatal4ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_Btn_XatauBatal4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -360,7 +344,6 @@ public class JDialog_UpdateStudio extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_BatalSimpanStudioEdit;
     private javax.swing.JButton Btn_SimpanStudioEdit;
-    private javax.swing.JButton Btn_XatauBatal4;
     private javax.swing.JTextField Field_IDStudioEdit;
     private javax.swing.JTextField Field_NamaStudioEdit;
     private javax.swing.JComboBox<String> Field_TipeStudioEdit;

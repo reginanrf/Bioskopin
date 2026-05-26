@@ -9,6 +9,10 @@ import java.util.Date;
 import javax.swing.Timer;
 import utils.Session;
 import utils.ColorPalette;
+import views.admin.FilmManagement.FilmManagementFrame;
+import views.admin.ScheduleManagement.ScheduleManagementFrame;
+import views.admin.StudioManagement.StudioManagementFrame;
+import views.admin.FnBManagementPanel;
 /**
  *
  * @author regina
@@ -30,31 +34,31 @@ public class adminDashboard extends javax.swing.JFrame {
         sidebarpanel.setBackground(ColorPalette.SIDEBAR);
         maincontentpanel.setBackground(ColorPalette.BACKGROUND);
         
-        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                
-                int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null, 
-                        "Apakah Anda yakin ingin keluar (Logout)?", 
-                        "Konfirmasi Logout", 
-                        javax.swing.JOptionPane.YES_NO_OPTION, 
-                        javax.swing.JOptionPane.QUESTION_MESSAGE);
-                
-                if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
-                    
-                    // Bersihkan Session
-                    utils.Session.id_user = 0;
-                    utils.Session.nama = null;
-                    utils.Session.email = null;
-                    utils.Session.role = null;
-                    
-                    // Buka Login & Tutup Dashboard
-                    login loginPage = new login(); 
-                    loginPage.setVisible(true);
-                    
-                    dispose(); // Hancurkan form ini
-                }
-            }
-        });
+//        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+//            public void mouseClicked(java.awt.event.MouseEvent evt) {
+//                
+//                int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null, 
+//                        "Apakah Anda yakin ingin keluar (Logout)?", 
+//                        "Konfirmasi Logout", 
+//                        javax.swing.JOptionPane.YES_NO_OPTION, 
+//                        javax.swing.JOptionPane.QUESTION_MESSAGE);
+//                
+//                if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+//                    
+//                    // Bersihkan Session
+//                    utils.Session.id_user = 0;
+//                    utils.Session.nama = null;
+//                    utils.Session.email = null;
+//                    utils.Session.role = null;
+//                    
+//                    // Buka Login & Tutup Dashboard
+//                    login loginPage = new login(); 
+//                    loginPage.setVisible(true);
+//                    
+//                    dispose(); // Hancurkan form ini
+//                }
+//            }
+//        });
         
         // 1. Kelola Film
         // Ganti 'panelFilm' dengan nama variabel panel/label lu
@@ -188,7 +192,6 @@ public class adminDashboard extends javax.swing.JFrame {
         sidebarFnB = new javax.swing.JLabel();
         sidebarReport = new javax.swing.JLabel();
         sidebarLogout = new javax.swing.JLabel();
-        sidebarReport1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         maincontentpanel = new javax.swing.JPanel();
         panel_pencarianfilter = new javax.swing.JPanel();
@@ -265,48 +268,73 @@ public class adminDashboard extends javax.swing.JFrame {
         sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
         sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(140, 76));
 
         sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        sidebarDashboard.setForeground(new java.awt.Color(195, 156, 0));
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
         sidebarDashboard.setText("  Dashboard");
 
         sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/studio-1.png"))); // NOI18N
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
         sidebarFilm.setText("  Film");
+        sidebarFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFilmMouseClicked(evt);
+            }
+        });
 
         sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio.png"))); // NOI18N
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
         sidebarStudio.setText("  Studio");
+        sidebarStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarStudioMouseClicked(evt);
+            }
+        });
 
         sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/calendar.png"))); // NOI18N
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
         sidebarCalendar.setText("  Schedule");
+        sidebarCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarCalendarMouseClicked(evt);
+            }
+        });
 
         sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/food.png"))); // NOI18N
+        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
         sidebarFnB.setText("  F&B");
+        sidebarFnB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFnBMouseClicked(evt);
+            }
+        });
 
         sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarReport.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/icons8-users-20 (1).png"))); // NOI18N
-        sidebarReport.setText("   Employee");
+        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
+        sidebarReport.setText("  Employee");
+        sidebarReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarReportMouseClicked(evt);
+            }
+        });
 
         sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logout.png"))); // NOI18N
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
         sidebarLogout.setText("  Logout");
-
-        sidebarReport1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarReport1.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/docs.png"))); // NOI18N
-        sidebarReport1.setText("  Report");
+        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
         sidebarpanel.setLayout(sidebarpanelLayout);
@@ -325,8 +353,7 @@ public class adminDashboard extends javax.swing.JFrame {
                             .addComponent(sidebarFnB)
                             .addComponent(sidebarReport)
                             .addComponent(sidebarCalendar)
-                            .addComponent(sidebarLogout)
-                            .addComponent(sidebarReport1))))
+                            .addComponent(sidebarLogout))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
@@ -346,9 +373,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addComponent(sidebarFnB)
                 .addGap(18, 18, 18)
                 .addComponent(sidebarReport)
-                .addGap(18, 18, 18)
-                .addComponent(sidebarReport1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(57, 57, 57))
         );
@@ -373,7 +398,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(16, 25, 53));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio-1.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -382,14 +407,14 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel9)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addComponent(jLabel9)
-                .addGap(39, 39, 39))
+                .addGap(40, 40, 40))
         );
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -403,7 +428,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(16, 25, 53));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -417,9 +442,9 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel13)
-                .addGap(39, 39, 39))
+                .addGap(42, 42, 42))
         );
 
         txtTotalStudio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -431,7 +456,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(16, 25, 53));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/calendar.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -459,7 +484,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(16, 25, 53));
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/food.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -490,7 +515,7 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(panel_pencarianfilterLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -520,7 +545,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTotalFnB, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel18))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         panel_pencarianfilterLayout.setVerticalGroup(
             panel_pencarianfilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,8 +589,13 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel21.setText("Quick Access");
 
         jPanel11.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel11MouseClicked(evt);
+            }
+        });
 
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio-1.png"))); // NOI18N
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -604,6 +634,11 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         jPanel13.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel13MouseClicked(evt);
+            }
+        });
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
@@ -613,7 +648,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setText("Kelola Jadwal");
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/calendar.png"))); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -644,6 +679,11 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         jPanel14.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel14MouseClicked(evt);
+            }
+        });
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
@@ -653,7 +693,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Kelola Studio");
 
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio.png"))); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -669,7 +709,7 @@ public class adminDashboard extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(jLabel29)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,32 +724,38 @@ public class adminDashboard extends javax.swing.JFrame {
         );
 
         jPanel15.setBackground(new java.awt.Color(16, 25, 53));
+        jPanel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel15MouseClicked(evt);
+            }
+        });
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setText("Kelola Menu FnB");
+        jLabel30.setText("Kelola Data Pegawai");
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("Kelola Food & Beverages");
+        jLabel31.setText("Kelola Pegawai");
 
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/food.png"))); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel31)
+                .addGap(148, 148, 148))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel32)
+                .addGap(222, 222, 222))
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel30))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel32)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addGap(186, 186, 186)
+                .addComponent(jLabel30)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -737,9 +783,9 @@ public class adminDashboard extends javax.swing.JFrame {
                             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(47, 47, 47)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -787,11 +833,6 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGroup(maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(maincontentpanelLayout.createSequentialGroup()
                         .addGroup(maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panel_pencarianfilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(maincontentpanelLayout.createSequentialGroup()
-                        .addGroup(maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -804,7 +845,12 @@ public class adminDashboard extends javax.swing.JFrame {
                                 .addGap(95, 95, 95)
                                 .addComponent(lblNama))
                             .addComponent(lblRole, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(67, 67, 67))))
+                        .addGap(67, 67, 67))
+                    .addGroup(maincontentpanelLayout.createSequentialGroup()
+                        .addGroup(maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panel_pencarianfilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
         maincontentpanelLayout.setVerticalGroup(
             maincontentpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -838,14 +884,11 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1127, 1127, 1127)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(maincontentpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(maincontentpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -860,6 +903,84 @@ public class adminDashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPanel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel11MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new FilmManagementFrame().setVisible(true);
+    }//GEN-LAST:event_jPanel11MouseClicked
+
+    private void jPanel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel14MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new StudioManagementFrame().setVisible(true);
+    }//GEN-LAST:event_jPanel14MouseClicked
+
+    private void jPanel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel13MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ScheduleManagementFrame().setVisible(true);
+    }//GEN-LAST:event_jPanel13MouseClicked
+
+    private void jPanel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel15MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new tampilDataPegawai().setVisible(true);
+    }//GEN-LAST:event_jPanel15MouseClicked
+
+    private void sidebarFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFilmMouseClicked
+        // TODO add your handling code here:
+         this.dispose();
+        new FilmManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarFilmMouseClicked
+
+    private void sidebarStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarStudioMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new StudioManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarStudioMouseClicked
+
+    private void sidebarCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarCalendarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ScheduleManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarCalendarMouseClicked
+
+    private void sidebarFnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFnBMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new FnBManagementPanel().setVisible(true);
+    }//GEN-LAST:event_sidebarFnBMouseClicked
+
+    private void sidebarLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarLogoutMouseClicked
+        // TODO add your handling code here:
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null, 
+                        "Apakah Anda yakin ingin keluar (Logout)?", 
+                        "Konfirmasi Logout", 
+                        javax.swing.JOptionPane.YES_NO_OPTION, 
+                        javax.swing.JOptionPane.QUESTION_MESSAGE);
+                
+                if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+                    
+                    // Bersihkan Session
+                    utils.Session.id_user = 0;
+                    utils.Session.nama = null;
+                    utils.Session.email = null;
+                    utils.Session.role = null;
+                    
+                    // Buka Login & Tutup Dashboard
+                    login loginPage = new login(); 
+                    loginPage.setVisible(true);
+                    
+                    dispose();
+                }
+    }//GEN-LAST:event_sidebarLogoutMouseClicked
+
+    private void sidebarReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarReportMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new tampilDataPegawai().setVisible(true);
+    }//GEN-LAST:event_sidebarReportMouseClicked
 
     /**
      * @param args the command line arguments
@@ -939,7 +1060,6 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel sidebarFnB;
     private javax.swing.JLabel sidebarLogout;
     private javax.swing.JLabel sidebarReport;
-    private javax.swing.JLabel sidebarReport1;
     private javax.swing.JLabel sidebarStudio;
     private javax.swing.JPanel sidebarpanel;
     private javax.swing.JTextField txtTotalFilm;

@@ -114,7 +114,7 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
         sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
         sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
         jLabel4.setPreferredSize(new java.awt.Dimension(140, 76));
 
         sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
@@ -209,7 +209,7 @@ public class BlmAdaStudioManagementFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel_BGLayout.createSequentialGroup()
-                        .addGap(0, 458, Short.MAX_VALUE)
+                        .addGap(0, 462, Short.MAX_VALUE)
                         .addGroup(JPanel_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addGroup(JPanel_BGLayout.createSequentialGroup()

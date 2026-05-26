@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package jakoy;
+package views.admin;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +11,11 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
+
+import views.admin.FilmManagement.FilmManagementFrame;
+import views.admin.ScheduleManagement.ScheduleManagementFrame;
+import views.admin.StudioManagement.StudioManagementFrame;
+import views.admin.FnBManagementPanel;
 /**
  *
  * @author dzaky
@@ -72,10 +77,8 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         sidebarFilm = new javax.swing.JLabel();
         sidebarStudio = new javax.swing.JLabel();
         sidebarCalendar = new javax.swing.JLabel();
-        sidebarFnB = new javax.swing.JLabel();
         sidebarReport = new javax.swing.JLabel();
         sidebarLogout = new javax.swing.JLabel();
-        sidebarReport1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 153));
@@ -194,48 +197,63 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
         sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logo_bioskopin (180 x 116 piksel).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(140, 76));
 
         sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
         sidebarDashboard.setText("  Dashboard");
+        sidebarDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarDashboardMouseClicked(evt);
+            }
+        });
 
         sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFilm.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/studio-1.png"))); // NOI18N
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
         sidebarFilm.setText("  Film");
+        sidebarFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarFilmMouseClicked(evt);
+            }
+        });
 
         sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/studio.png"))); // NOI18N
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
         sidebarStudio.setText("  Studio");
+        sidebarStudio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarStudioMouseClicked(evt);
+            }
+        });
 
         sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarCalendar.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/calendar.png"))); // NOI18N
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
         sidebarCalendar.setText("  Schedule");
-
-        sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/food.png"))); // NOI18N
-        sidebarFnB.setText("  F&B");
+        sidebarCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarCalendarMouseClicked(evt);
+            }
+        });
 
         sidebarReport.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarReport.setForeground(new java.awt.Color(204, 153, 0));
-        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/icons8-users-20 (1).png"))); // NOI18N
-        sidebarReport.setText("   Employee");
+        sidebarReport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/person.png"))); // NOI18N
+        sidebarReport.setText("  Employee");
 
         sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/logout.png"))); // NOI18N
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
         sidebarLogout.setText("  Logout");
-
-        sidebarReport1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        sidebarReport1.setForeground(new java.awt.Color(239, 239, 239));
-        sidebarReport1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uas/docs.png"))); // NOI18N
-        sidebarReport1.setText("  Report");
+        sidebarLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sidebarLogoutMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
         sidebarpanel.setLayout(sidebarpanelLayout);
@@ -251,11 +269,9 @@ public class tampilDataPegawai extends javax.swing.JFrame {
                             .addComponent(sidebarDashboard)
                             .addComponent(sidebarFilm)
                             .addComponent(sidebarStudio)
-                            .addComponent(sidebarFnB)
                             .addComponent(sidebarReport)
                             .addComponent(sidebarCalendar)
-                            .addComponent(sidebarLogout)
-                            .addComponent(sidebarReport1))))
+                            .addComponent(sidebarLogout))))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         sidebarpanelLayout.setVerticalGroup(
@@ -272,12 +288,8 @@ public class tampilDataPegawai extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(sidebarCalendar)
                 .addGap(18, 18, 18)
-                .addComponent(sidebarFnB)
-                .addGap(18, 18, 18)
                 .addComponent(sidebarReport)
-                .addGap(18, 18, 18)
-                .addComponent(sidebarReport1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
                 .addComponent(sidebarLogout)
                 .addGap(57, 57, 57))
         );
@@ -394,6 +406,54 @@ public class tampilDataPegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void sidebarDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarDashboardMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new adminDashboard().setVisible(true);
+    }//GEN-LAST:event_sidebarDashboardMouseClicked
+
+    private void sidebarFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarFilmMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new FilmManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarFilmMouseClicked
+
+    private void sidebarStudioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarStudioMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new StudioManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarStudioMouseClicked
+
+    private void sidebarCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarCalendarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new ScheduleManagementFrame().setVisible(true);
+    }//GEN-LAST:event_sidebarCalendarMouseClicked
+
+    private void sidebarLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sidebarLogoutMouseClicked
+        // TODO add your handling code here:
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(null, 
+                        "Apakah Anda yakin ingin keluar (Logout)?", 
+                        "Konfirmasi Logout", 
+                        javax.swing.JOptionPane.YES_NO_OPTION, 
+                        javax.swing.JOptionPane.QUESTION_MESSAGE);
+                
+                if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+                    
+                    // Bersihkan Session
+                    utils.Session.id_user = 0;
+                    utils.Session.nama = null;
+                    utils.Session.email = null;
+                    utils.Session.role = null;
+                    
+                    // Buka Login & Tutup Dashboard
+                    login loginPage = new login(); 
+                    loginPage.setVisible(true);
+                    
+                    dispose();
+                }
+    }//GEN-LAST:event_sidebarLogoutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -445,10 +505,8 @@ public class tampilDataPegawai extends javax.swing.JFrame {
     private javax.swing.JLabel sidebarCalendar;
     private javax.swing.JLabel sidebarDashboard;
     private javax.swing.JLabel sidebarFilm;
-    private javax.swing.JLabel sidebarFnB;
     private javax.swing.JLabel sidebarLogout;
     private javax.swing.JLabel sidebarReport;
-    private javax.swing.JLabel sidebarReport1;
     private javax.swing.JLabel sidebarStudio;
     private javax.swing.JPanel sidebarpanel;
     private javax.swing.JTable tblPegawai;
