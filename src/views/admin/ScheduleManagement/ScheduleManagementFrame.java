@@ -16,9 +16,11 @@ import models.Studio;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
-import utils.ActionButtonEditor;
-import utils.ActionButtonRenderer;
+import utils.ButtonColumn;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
 import views.admin.ScheduleManagement.CreateSchedule;
+import views.admin.ScheduleManagement.UpdateSchedule;
 import com.formdev.flatlaf.FlatLightLaf;
 /**
  *
@@ -48,18 +50,54 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                             0);
             tabelDaftarTayang.setModel(tableModel);
             
-            tabelDaftarTayang.getColumnModel()
-                    .getColumn(6)
-                    .setCellRenderer(
-                            new ActionButtonRenderer()
-                    );
+            new ButtonColumn(
+                tabelDaftarTayang,
+                6,
 
-            tabelDaftarTayang.getColumnModel()
-                    .getColumn(6)
-                    .setCellEditor(
-                            new ActionButtonEditor(this)
-                    );
-            
+                // ACTION EDIT
+                new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        int row = Integer.parseInt(e.getActionCommand());
+
+                        Schedule schedule = listSchedule.get(row);
+
+                        UpdateSchedule dialog =
+                                new UpdateSchedule(
+                                        ScheduleManagementFrame.this,
+                                        true,
+                                        schedule
+                                );
+
+                        dialog.setVisible(true);
+
+                        loadTable();
+                    }
+                },
+
+                // ACTION HAPUS
+                new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        int row = Integer.parseInt(e.getActionCommand());
+
+                        Schedule schedule = listSchedule.get(row);
+
+                        DeleteSchedule dialog =
+                                new DeleteSchedule(
+                                        ScheduleManagementFrame.this,
+                                        true,
+                                        schedule
+                                );
+
+                        dialog.setVisible(true);
+
+                        loadTable();
+                    }
+                });
+          
             tabelDaftarTayang.setRowHeight(40);
             tabelDaftarTayang.setShowGrid(false);
             tabelDaftarTayang.setIntercellSpacing(new java.awt.Dimension(0, 0));
@@ -253,7 +291,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarCalendar.setForeground(new java.awt.Color(195, 156, 0));
         sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
-        sidebarCalendar.setText("  Schedule");
+        sidebarCalendar.setText("  Jadwal");
 
         sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
@@ -323,7 +361,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel4.setText("Schedule Management");
+        jLabel4.setText("Manajemen Jadwal");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
@@ -355,8 +393,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         buttonCari.setBackground(new java.awt.Color(195, 156, 0));
         buttonCari.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         buttonCari.setForeground(new java.awt.Color(255, 255, 255));
-        buttonCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search-putih.png"))); // NOI18N
         buttonCari.setText("Cari");
+        buttonCari.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonCari.addActionListener(this::buttonCariActionPerformed);
 
         buttonRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/reset.png"))); // NOI18N
@@ -379,8 +417,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(buttonCari)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonCari, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -406,6 +444,8 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
         buttonTambah.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         buttonTambah.setForeground(new java.awt.Color(255, 255, 255));
         buttonTambah.setText("+ Tambah Jadwal");
+        buttonTambah.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buttonTambah.setBorderPainted(false);
         buttonTambah.setPreferredSize(new java.awt.Dimension(155, 35));
         buttonTambah.addActionListener(this::buttonTambahActionPerformed);
 
@@ -450,7 +490,7 @@ public class ScheduleManagementFrame extends javax.swing.JFrame {
                     .addComponent(totalJadwal)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

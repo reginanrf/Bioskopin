@@ -199,11 +199,15 @@ public class CreateSchedule extends javax.swing.JDialog {
         buttonSimpan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         buttonSimpan.setForeground(new java.awt.Color(255, 255, 255));
         buttonSimpan.setText("Simpan");
+        buttonSimpan.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonSimpan.addActionListener(this::buttonSimpanActionPerformed);
         jPanel1.add(buttonSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 86, -1));
 
-        buttonBatal.setBackground(new java.awt.Color(255, 153, 153));
+        buttonBatal.setBackground(new java.awt.Color(255, 0, 51));
+        buttonBatal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        buttonBatal.setForeground(new java.awt.Color(255, 255, 255));
         buttonBatal.setText("Batal");
+        buttonBatal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBatal.addActionListener(this::buttonBatalActionPerformed);
         jPanel1.add(buttonBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 86, -1));
 

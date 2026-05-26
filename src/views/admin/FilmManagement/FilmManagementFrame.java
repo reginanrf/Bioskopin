@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import utils.ColorPalette;
+import com.formdev.flatlaf.FlatLightLaf;
 
 /**
  *
@@ -149,6 +150,14 @@ public class FilmManagementFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        sidebarpanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        sidebarDashboard = new javax.swing.JLabel();
+        sidebarFilm = new javax.swing.JLabel();
+        sidebarStudio = new javax.swing.JLabel();
+        sidebarCalendar = new javax.swing.JLabel();
+        sidebarFnB = new javax.swing.JLabel();
+        sidebarLogout = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabelJudul = new javax.swing.JLabel();
         jLabelSubJudul = new javax.swing.JLabel();
@@ -166,15 +175,100 @@ public class FilmManagementFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(16, 25, 53));
         jPanel1.setPreferredSize(new java.awt.Dimension(240, 0));
 
+        sidebarpanel.setBackground(new java.awt.Color(16, 25, 53));
+        sidebarpanel.setPreferredSize(new java.awt.Dimension(240, 730));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logo_bioskopin.png"))); // NOI18N
+        jLabel3.setPreferredSize(new java.awt.Dimension(140, 76));
+
+        sidebarDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarDashboard.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/home.png"))); // NOI18N
+        sidebarDashboard.setText("  Dashboard");
+
+        sidebarFilm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFilm.setForeground(new java.awt.Color(195, 156, 0));
+        sidebarFilm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio-1.png"))); // NOI18N
+        sidebarFilm.setText("  Film");
+
+        sidebarStudio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarStudio.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarStudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/studio.png"))); // NOI18N
+        sidebarStudio.setText("  Studio");
+
+        sidebarCalendar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarCalendar.setForeground(new java.awt.Color(204, 204, 204));
+        sidebarCalendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/calendar.png"))); // NOI18N
+        sidebarCalendar.setText("  Jadwal");
+
+        sidebarFnB.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarFnB.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarFnB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/food.png"))); // NOI18N
+        sidebarFnB.setText("  F&B");
+
+        sidebarLogout.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        sidebarLogout.setForeground(new java.awt.Color(239, 239, 239));
+        sidebarLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/logout.png"))); // NOI18N
+        sidebarLogout.setText("  Logout");
+
+        javax.swing.GroupLayout sidebarpanelLayout = new javax.swing.GroupLayout(sidebarpanel);
+        sidebarpanel.setLayout(sidebarpanelLayout);
+        sidebarpanelLayout.setHorizontalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(sidebarpanelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sidebarDashboard)
+                            .addComponent(sidebarFilm)
+                            .addComponent(sidebarStudio)
+                            .addComponent(sidebarFnB)
+                            .addComponent(sidebarCalendar)
+                            .addComponent(sidebarLogout))))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        sidebarpanelLayout.setVerticalGroup(
+            sidebarpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sidebarpanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(sidebarDashboard)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFilm)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarStudio)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarCalendar)
+                .addGap(18, 18, 18)
+                .addComponent(sidebarFnB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
+                .addComponent(sidebarLogout)
+                .addGap(40, 40, 40))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(sidebarpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -278,7 +372,7 @@ public class FilmManagementFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jButtonTambahFilm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelJudul)
@@ -288,7 +382,7 @@ public class FilmManagementFrame extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,8 +396,8 @@ public class FilmManagementFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
         );
 
         pack();
@@ -336,6 +430,11 @@ public class FilmManagementFrame extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        try {
+            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize FlatLaf");
+        }
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -359,6 +458,7 @@ public class FilmManagementFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCari;
     private javax.swing.JButton jButtonTambahFilm;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelJudul;
     private javax.swing.JLabel jLabelJudul1;
     private javax.swing.JLabel jLabelSubJudul;
@@ -368,5 +468,12 @@ public class FilmManagementFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFilm;
     private javax.swing.JTextField jTextFieldCari;
+    private javax.swing.JLabel sidebarCalendar;
+    private javax.swing.JLabel sidebarDashboard;
+    private javax.swing.JLabel sidebarFilm;
+    private javax.swing.JLabel sidebarFnB;
+    private javax.swing.JLabel sidebarLogout;
+    private javax.swing.JLabel sidebarStudio;
+    private javax.swing.JPanel sidebarpanel;
     // End of variables declaration//GEN-END:variables
 }

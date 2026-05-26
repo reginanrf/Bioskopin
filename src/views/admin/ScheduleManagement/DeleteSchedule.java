@@ -188,10 +188,12 @@ public class DeleteSchedule extends javax.swing.JDialog {
         buttonHapus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         buttonHapus.setForeground(new java.awt.Color(255, 255, 255));
         buttonHapus.setText("Hapus");
+        buttonHapus.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonHapus.addActionListener(this::buttonHapusActionPerformed);
         jPanel1.add(buttonHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 86, -1));
 
         buttonBatal.setText("Batal");
+        buttonBatal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBatal.addActionListener(this::buttonBatalActionPerformed);
         jPanel1.add(buttonBatal, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 86, -1));
 
